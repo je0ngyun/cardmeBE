@@ -1,21 +1,18 @@
 package com.jy.hiSleep.dto;
 
 import com.jy.hiSleep.entity.UserEntity;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
+import lombok.*;
 
-@Getter
+@Data
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder(access = AccessLevel.PRIVATE)
 public class UserInfoDto {
-    private String userID;
+    private String userId;
     private String userNm;
     private String userEm;
     public static UserInfoDto create(final UserEntity user) {
         return builder()
-                .userID(user.getUserID())
+                .userId(user.getUserId())
                 .userNm(user.getUserNm())
                 .userEm(user.getUserEm())
                 .build();

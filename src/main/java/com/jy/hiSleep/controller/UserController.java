@@ -1,23 +1,27 @@
 package com.jy.hiSleep.controller;
 
+import com.jy.hiSleep.dto.UserInfoDto;
 import com.jy.hiSleep.dto.UserSignUpDto;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.jy.hiSleep.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @RestController
 @RequestMapping("user")
 public class UserController {
-    @GetMapping("test")
-    public String test(@ModelAttribute UserSignUpDto signUp, BindingResult bindingResult) {
-        System.out.println(signUp.toString());
-        if(bindingResult.hasErrors()){
-            bindingResult.getAllErrors().forEach(c ->{
-                System.out.println(c);
-            });
-        }
-        return "test";
+
+    private final UserService userService;
+
+    @Autowired
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @PostMapping("signup")
+    public ResponseEntity<UserInfoDto> test(@RequestBody @Valid final UserSignUpDto userSignUpDto) {
+        return ResponseEntity.ok(userService.signUp(userSignUpDto));
     }
 }
