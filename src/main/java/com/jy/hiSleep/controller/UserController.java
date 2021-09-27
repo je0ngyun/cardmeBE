@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping("user")
+@RequestMapping("/user")
 public class UserController {
-
     private final UserService userService;
 
     @Autowired
@@ -22,12 +21,20 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("signup")
+    @PostMapping("/signup")
     public ResponseEntity<UserInfoDto> signUp(@RequestBody @Valid final UserSignUpDto userSignUpDto) {
-        return new ResponseEntity<>(userService.signUp(userSignUpDto), HttpStatus.OK);
+        return new ResponseEntity<>(userService.signUp(userSignUpDto), HttpStatus.CREATED);
     }
 
-    @GetMapping("errortest")
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserInfoDto> getUserInfo(@PathVariable("userId") String userId){
+        return new ResponseEntity<>(userService.getUserInfo(
+                UserInfoDto.builder().userId(userId).build()),
+                HttpStatus.OK
+        );
+    }
+
+    @GetMapping("/errortest")
     public String test(){
         throw new RestException();
     }

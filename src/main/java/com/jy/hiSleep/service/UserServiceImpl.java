@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
-
     private final UserRepository userRepository;
 
     @Autowired
@@ -19,14 +18,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserInfoDto signUp(final UserSignUpDto signUpDto) {
-        final UserEntity user = UserEntity.builder(signUpDto.getUserId())
-                .userPw(signUpDto.getUserPw())
-                .userNm(signUpDto.getUserNm())
-                .userEm(signUpDto.getUserEm())
+    public UserInfoDto signUp(final UserSignUpDto userSignUpDto) {
+        final UserEntity user = UserEntity.builder(userSignUpDto.getUserId())
+                .userPw(userSignUpDto.getUserPw())
+                .userNm(userSignUpDto.getUserNm())
+                .userEm(userSignUpDto.getUserEm())
                 .build();
         final UserEntity repoRet = userRepository.save(user);
-        final UserInfoDto userInfoDto = UserInfoDto.create(repoRet);
-        return userInfoDto;
+        UserInfoDto userInfo = UserInfoDto.create(repoRet);
+        return userInfo;
+    }
+
+    @Override
+    public UserInfoDto getUserInfo(final UserInfoDto userInfoDto) {
+        final UserEntity repoRet = userRepository.getById(userInfoDto.getUserId());
+        UserInfoDto userInfo = UserInfoDto.create(repoRet);
+        return userInfo;
     }
 }

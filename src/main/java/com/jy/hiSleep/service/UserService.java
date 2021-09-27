@@ -11,4 +11,5 @@ public interface UserService {
      * 비밀번호 변경
      */
     UserInfoDto signUp(UserSignUpDto userSignUpDto);
+    UserInfoDto getUserInfo(UserInfoDto userInfoDto);
 }

@@ -1,6 +1,5 @@
 package com.jy.hiSleep.dto;
 
-import com.jy.hiSleep.entity.UserEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,8 +12,6 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @Builder(access = AccessLevel.PRIVATE)
 public class UserSignUpDto {
-
-
     @NotBlank
     private String userId;
     @NotBlank
@@ -24,13 +21,4 @@ public class UserSignUpDto {
     @Email
     @NotBlank
     private String userEm;
-
-    public static UserSignUpDto create(final UserEntity user) {
-        return builder()
-                .userId(user.getUserId())
-                .userNm(user.getUserNm())
-                .userPw(user.getUserPw())
-                .userEm(user.getUserEm())
-                .build();
-    }
 }
