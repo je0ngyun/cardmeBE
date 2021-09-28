@@ -1,13 +1,11 @@
-package com.jy.hiSleep;
+package com.jy.cardme;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HiSleepApplication {
-
+public class CardmeApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(HiSleepApplication.class, args);
+		SpringApplication.run(CardmeApplication.class, args);
 	}
-
 }

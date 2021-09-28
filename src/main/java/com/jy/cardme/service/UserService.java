@@ -1,7 +1,7 @@
-package com.jy.hiSleep.service;
+package com.jy.cardme.service;
 
-import com.jy.hiSleep.dto.UserInfoDto;
-import com.jy.hiSleep.dto.UserSignUpDto;
+import com.jy.cardme.dto.UserInfoDto;
+import com.jy.cardme.dto.UserSignUpDto;
 
 public interface UserService {
     /* 공통 서비스

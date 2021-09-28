@@ -1,4 +1,4 @@
-package com.jy.hiSleep.advice;
+package com.jy.cardme.advice;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

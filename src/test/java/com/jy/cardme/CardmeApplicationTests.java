@@ -1,10 +1,10 @@
-package com.jy.hiSleep;
+package com.jy.cardme;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HiSleepApplicationTests {
+class CardmeApplicationTests {
 
 	@Test
 	void contextLoads() {

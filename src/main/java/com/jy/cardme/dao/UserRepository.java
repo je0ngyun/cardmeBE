@@ -1,6 +1,6 @@
-package com.jy.hiSleep.dao;
+package com.jy.cardme.dao;
 
-import com.jy.hiSleep.entity.UserEntity;
+import com.jy.cardme.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<UserEntity, String> {

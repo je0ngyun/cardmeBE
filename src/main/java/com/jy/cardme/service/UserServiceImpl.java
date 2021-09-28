@@ -1,10 +1,10 @@
-package com.jy.hiSleep.service;
+package com.jy.cardme.service;
 
 
-import com.jy.hiSleep.dao.UserRepository;
-import com.jy.hiSleep.dto.UserInfoDto;
-import com.jy.hiSleep.dto.UserSignUpDto;
-import com.jy.hiSleep.entity.UserEntity;
+import com.jy.cardme.dao.UserRepository;
+import com.jy.cardme.dto.UserInfoDto;
+import com.jy.cardme.dto.UserSignUpDto;
+import com.jy.cardme.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

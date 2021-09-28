@@ -1,9 +1,9 @@
-package com.jy.hiSleep.controller;
+package com.jy.cardme.controller;
 
-import com.jy.hiSleep.commonException.RestException;
-import com.jy.hiSleep.dto.UserInfoDto;
-import com.jy.hiSleep.dto.UserSignUpDto;
-import com.jy.hiSleep.service.UserService;
+import com.jy.cardme.commonException.RestException;
+import com.jy.cardme.dto.UserInfoDto;
+import com.jy.cardme.dto.UserSignUpDto;
+import com.jy.cardme.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

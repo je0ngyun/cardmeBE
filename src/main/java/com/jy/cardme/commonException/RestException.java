@@ -1,4 +1,4 @@
-package com.jy.hiSleep.commonException;
+package com.jy.cardme.commonException;
 
 public class RestException extends RuntimeException{
 }

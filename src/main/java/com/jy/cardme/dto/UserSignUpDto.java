@@ -1,4 +1,4 @@
-package com.jy.hiSleep.dto;
+package com.jy.cardme.dto;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

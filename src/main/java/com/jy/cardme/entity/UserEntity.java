@@ -1,4 +1,4 @@
-package com.jy.hiSleep.entity;
+package com.jy.cardme.entity;
 
 import lombok.*;
 

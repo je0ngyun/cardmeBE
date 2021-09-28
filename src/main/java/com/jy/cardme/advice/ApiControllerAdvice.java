@@ -1,6 +1,6 @@
-package com.jy.hiSleep.advice;
+package com.jy.cardme.advice;
 
-import com.jy.hiSleep.commonException.RestException;
+import com.jy.cardme.commonException.RestException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

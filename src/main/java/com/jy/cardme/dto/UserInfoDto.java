@@ -1,6 +1,6 @@
-package com.jy.hiSleep.dto;
+package com.jy.cardme.dto;
 
-import com.jy.hiSleep.entity.UserEntity;
+import com.jy.cardme.entity.UserEntity;
 import lombok.*;
 
 @Data
