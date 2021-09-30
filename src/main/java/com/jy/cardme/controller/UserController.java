@@ -38,4 +38,9 @@ public class UserController {
     public String test(){
         throw new RestException();
     }
+
+    @GetMapping("/test")
+    public String test2(){
+        return "ci/cd test";
+    }
 }
