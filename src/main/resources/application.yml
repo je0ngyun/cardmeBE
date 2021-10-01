@@ -1,9 +1,14 @@
+# public repo 구성으로 인한 부득이한 민감정보 유출
+# public repo 구성시 추후 Docker 에서 외부주입으로 해결 필요
 server:
   address: 0.0.0.0
-  port: 8082
+  port: 8080
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://140.238.12.18:3306/cardme?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    username: dev
+    password: summer9830
   jpa:
     show-sql: true
     hibernate:
