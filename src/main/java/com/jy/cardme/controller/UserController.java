@@ -41,6 +41,6 @@ public class UserController {
 
     @GetMapping("/test")
     public String test2(){
-        return "ci/cd test3";
+        return "ci/cd test in deploy master";
     }
 }
