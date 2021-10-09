@@ -27,7 +27,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserInfoDto> getUserInfo(@PathVariable("userId") String userId){
+    public ResponseEntity<UserInfoDto> getUserInfo(@PathVariable("userId") String userId) {
         return new ResponseEntity<>(userService.getUserInfo(
                 UserInfoDto.builder().userId(userId).build()),
                 HttpStatus.OK
@@ -35,12 +35,12 @@ public class UserController {
     }
 
     @GetMapping("/errortest")
-    public String test(){
+    public String test() {
         throw new RestException();
     }
 
     @GetMapping("/test")
-    public String test2(){
+    public String test2() {
         return "ci/cd test in deploy master";
     }
 }
