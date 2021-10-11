@@ -1,6 +1,7 @@
 package com.jy.cardme.advice;
 
 import com.jy.cardme.commonException.RestException;
+import com.jy.cardme.components.ResponseMessage;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -16,11 +17,10 @@ import java.util.Map;
 @RestControllerAdvice
 public class ApiControllerAdvice {
     @ExceptionHandler(value = {RestException.class})
-    public ResponseEntity<Object> handleUserNotExistException(RestException e){
+    public ResponseEntity<Object> handleUserNotExistException(RestException e) {
         HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
-        Map<String, String> errors = new HashMap<>();
         ApiException apiException = ApiException.builder()
-                .message("오류테스팅")
+                .message(ResponseMessage.BAD_REQUEST)
                 .httpStatus(httpStatus)
                 .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
                 .build();
@@ -29,8 +29,7 @@ public class ApiControllerAdvice {
     }
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
-    public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex){
-
+    public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
         HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors()
@@ -42,6 +41,6 @@ public class ApiControllerAdvice {
                 .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
                 .build();
 
-        return new ResponseEntity<>(apiException,httpStatus);
+        return new ResponseEntity<>(apiException, httpStatus);
     }
 }

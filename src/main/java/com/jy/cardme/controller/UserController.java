@@ -1,6 +1,8 @@
 package com.jy.cardme.controller;
 
 import com.jy.cardme.commonException.RestException;
+import com.jy.cardme.components.DefaultRes;
+import com.jy.cardme.components.ResponseMessage;
 import com.jy.cardme.dto.UserInfoDto;
 import com.jy.cardme.dto.UserSignUpDto;
 import com.jy.cardme.service.UserService;
@@ -22,16 +24,20 @@ public class UserController {
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<UserInfoDto> signUp(@RequestBody @Valid final UserSignUpDto userSignUpDto) {
-        return new ResponseEntity<>(userService.signUp(userSignUpDto), HttpStatus.CREATED);
+    public ResponseEntity signUp(@RequestBody @Valid final UserSignUpDto userSignUpDto) {
+        HttpStatus httpStatus = HttpStatus.CREATED;
+        Object data = userService.signUp(userSignUpDto);
+        DefaultRes res = DefaultRes.builder().message(ResponseMessage.CREATED_USER).httpStatus(httpStatus).data(data).build();
+        return new ResponseEntity(res, httpStatus);
     }
 
     @GetMapping("/{userId}")
-    public ResponseEntity<UserInfoDto> getUserInfo(@PathVariable("userId") String userId) {
-        return new ResponseEntity<>(userService.getUserInfo(
-                UserInfoDto.builder().userId(userId).build()),
-                HttpStatus.OK
-        );
+    public ResponseEntity getUserInfo(@PathVariable("userId") String userId) {
+        HttpStatus httpStatus = HttpStatus.OK;
+        Object data = userService.getUserInfo(
+                UserInfoDto.builder().userId(userId).build());
+        DefaultRes res = DefaultRes.builder().message(ResponseMessage.READ_USER).httpStatus(httpStatus).data(data).build();
+        return new ResponseEntity(res, httpStatus);
     }
 
     @GetMapping("/errortest")
