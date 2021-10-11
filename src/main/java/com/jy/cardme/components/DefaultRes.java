@@ -9,7 +9,7 @@ import org.springframework.http.HttpStatus;
 @AllArgsConstructor
 @Builder
 public class DefaultRes<T> {
-    private String message;
+    private final String message;
     private final HttpStatus httpStatus;
-    private T data;
+    private final T data;
 }

@@ -18,8 +18,8 @@ import java.util.Map;
 public class ApiControllerAdvice {
     @ExceptionHandler(value = {RestException.class})
     public ResponseEntity<Object> handleUserNotExistException(RestException e) {
-        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
-        ApiException apiException = ApiException.builder()
+        final HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
+        final ApiException apiException = ApiException.builder()
                 .message(ResponseMessage.BAD_REQUEST)
                 .httpStatus(httpStatus)
                 .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
@@ -30,12 +30,12 @@ public class ApiControllerAdvice {
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
-        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
+        final HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
         Map<String, String> errors = new HashMap<>();
         ex.getBindingResult().getAllErrors()
                 .forEach(c -> errors.put(((FieldError) c).getField(), c.getDefaultMessage()));
 
-        ApiException apiException = ApiException.builder()
+        final ApiException apiException = ApiException.builder()
                 .message(errors)
                 .httpStatus(httpStatus)
                 .timestamp(ZonedDateTime.now(ZoneId.of("Z")))

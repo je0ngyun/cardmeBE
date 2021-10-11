@@ -25,18 +25,18 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity signUp(@RequestBody @Valid final UserSignUpDto userSignUpDto) {
-        HttpStatus httpStatus = HttpStatus.CREATED;
-        Object data = userService.signUp(userSignUpDto);
-        DefaultRes res = DefaultRes.builder().message(ResponseMessage.CREATED_USER).httpStatus(httpStatus).data(data).build();
+        final HttpStatus httpStatus = HttpStatus.CREATED;
+        final Object data = userService.signUp(userSignUpDto);
+        final DefaultRes res = DefaultRes.builder().message(ResponseMessage.CREATED_USER).httpStatus(httpStatus).data(data).build();
         return new ResponseEntity(res, httpStatus);
     }
 
     @GetMapping("/{userId}")
     public ResponseEntity getUserInfo(@PathVariable("userId") String userId) {
-        HttpStatus httpStatus = HttpStatus.OK;
-        Object data = userService.getUserInfo(
+        final HttpStatus httpStatus = HttpStatus.OK;
+        final Object data = userService.getUserInfo(
                 UserInfoDto.builder().userId(userId).build());
-        DefaultRes res = DefaultRes.builder().message(ResponseMessage.READ_USER).httpStatus(httpStatus).data(data).build();
+        final DefaultRes res = DefaultRes.builder().message(ResponseMessage.READ_USER).httpStatus(httpStatus).data(data).build();
         return new ResponseEntity(res, httpStatus);
     }
 

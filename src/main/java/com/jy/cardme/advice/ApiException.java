@@ -2,15 +2,15 @@ package com.jy.cardme.advice;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
 import org.springframework.http.HttpStatus;
 
 import java.time.ZonedDateTime;
 
 
-@Builder
+@Data
 @AllArgsConstructor
-@Getter
+@Builder
 public class ApiException {
     private final Object message;
     private final HttpStatus httpStatus;
