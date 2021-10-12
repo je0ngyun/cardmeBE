@@ -9,8 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "user")
-@Getter
-@ToString
+@Data
 @Builder(builderMethodName = "userEntityBuilder")
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
