@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://140.238.12.18:3306/cardme?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    username: dev
+    password: summer9830
+jwt:
+  secret-key: "kimjeongyun"

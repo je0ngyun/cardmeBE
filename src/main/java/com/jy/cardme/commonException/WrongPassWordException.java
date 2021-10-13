@@ -3,6 +3,6 @@ package com.jy.cardme.commonException;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public class UserNotFoundException extends RuntimeException{
+public class WrongPassWordException extends RuntimeException {
     private String s;
 }

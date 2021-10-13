@@ -1,6 +1,8 @@
 package com.jy.cardme.advice;
 
+import com.jy.cardme.commonException.CommonTokenException;
 import com.jy.cardme.commonException.UserNotFoundException;
+import com.jy.cardme.commonException.WrongPassWordException;
 import com.jy.cardme.components.ResponseMessage;
 import com.jy.cardme.components.StatusCode;
 import org.springframework.http.HttpStatus;
@@ -19,7 +21,7 @@ import java.util.stream.Collectors;
 @RestControllerAdvice
 public class ApiControllerAdvice {
     @ExceptionHandler(value = {UserNotFoundException.class})
-    public ResponseEntity<Object> handleUserNotExistException(UserNotFoundException e) {
+    public ResponseEntity<Object> handleUserNotExistException(UserNotFoundException ex) {
         final ErrorRes errorRes = ErrorRes.builder()
                 .message(ResponseMessage.USER_NOT_FOUND)
                 .httpStatus(StatusCode.NOT_FOUND)
@@ -49,5 +51,27 @@ public class ApiControllerAdvice {
                 .build();
 
         return new ResponseEntity<>(errorRes, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {WrongPassWordException.class})
+    public ResponseEntity<Object> handleBadCredentialsException(WrongPassWordException ex) {
+
+        final ErrorRes errorRes = ErrorRes.builder()
+                .message(ResponseMessage.WRONG_PASSWORD)
+                .httpStatus(StatusCode.BAD_REQUEST)
+                .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
+                .build();
+
+        return new ResponseEntity<>(errorRes, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {CommonTokenException.class})
+    public ResponseEntity<Object> handleIllegalArgumentException(CommonTokenException ex){
+        final ErrorRes errorRes = ErrorRes.builder()
+                .message(ex.getMessage())
+                .httpStatus(StatusCode.UNAUTHORIZED)
+                .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
+                .build();
+        return new ResponseEntity<>(errorRes,HttpStatus.FORBIDDEN);
     }
 }
