@@ -1,8 +1,13 @@
 package com.jy.cardme.advice;
 
-import com.jy.cardme.commonException.RestException;
+import com.jy.cardme.commonException.CommonTokenException;
+import com.jy.cardme.commonException.UserNotFoundException;
+import com.jy.cardme.commonException.WrongPassWordException;
+import com.jy.cardme.components.ResponseMessage;
+import com.jy.cardme.components.StatusCode;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,38 +15,63 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ApiControllerAdvice {
-    @ExceptionHandler(value = {RestException.class})
-    public ResponseEntity<Object> handleUserNotExistException(RestException e){
-        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
-        Map<String, String> errors = new HashMap<>();
-        ApiException apiException = ApiException.builder()
-                .message("오류테스팅")
-                .httpStatus(httpStatus)
+    @ExceptionHandler(value = {UserNotFoundException.class})
+    public ResponseEntity<Object> handleUserNotExistException(UserNotFoundException ex) {
+        final ErrorRes errorRes = ErrorRes.builder()
+                .message(ResponseMessage.USER_NOT_FOUND)
+                .httpStatus(StatusCode.NOT_FOUND)
                 .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
                 .build();
 
-        return new ResponseEntity<>(apiException, httpStatus);
+        return new ResponseEntity<>(errorRes, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
-    public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex){
+    public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
+        final BindingResult bindingResult = ex.getBindingResult();
+        final List<FieldError> errors = bindingResult.getFieldErrors();
 
-        HttpStatus httpStatus = HttpStatus.BAD_REQUEST;
-        Map<String, String> errors = new HashMap<>();
-        ex.getBindingResult().getAllErrors()
-                .forEach(c -> errors.put(((FieldError) c).getField(), c.getDefaultMessage()));
+        final List<FieldErrorDetail> details = errors.stream()
+                .map(error -> FieldErrorDetail.builder()
+                        .field(error.getField())
+                        .value(error.getRejectedValue().toString())
+                        .reason(error.getDefaultMessage()).build())
+                .collect(Collectors.toList());
 
-        ApiException apiException = ApiException.builder()
-                .message(errors)
-                .httpStatus(httpStatus)
+        final ErrorRes errorRes = ErrorRes.builder()
+                .message(ResponseMessage.ARGUMENT_NOT_VALID)
+                .httpStatus(StatusCode.BAD_REQUEST)
+                .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
+                .errors(details)
+                .build();
+
+        return new ResponseEntity<>(errorRes, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {WrongPassWordException.class})
+    public ResponseEntity<Object> handleBadCredentialsException(WrongPassWordException ex) {
+
+        final ErrorRes errorRes = ErrorRes.builder()
+                .message(ResponseMessage.WRONG_PASSWORD)
+                .httpStatus(StatusCode.BAD_REQUEST)
                 .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
                 .build();
 
-        return new ResponseEntity<>(apiException,httpStatus);
+        return new ResponseEntity<>(errorRes, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {CommonTokenException.class})
+    public ResponseEntity<Object> handleIllegalArgumentException(CommonTokenException ex){
+        final ErrorRes errorRes = ErrorRes.builder()
+                .message(ex.getMessage())
+                .httpStatus(StatusCode.UNAUTHORIZED)
+                .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
+                .build();
+        return new ResponseEntity<>(errorRes,HttpStatus.FORBIDDEN);
     }
 }
