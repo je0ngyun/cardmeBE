@@ -3,7 +3,7 @@ package com.jy.cardme.controller;
 import com.jy.cardme.components.DefaultRes;
 import com.jy.cardme.components.ResponseMessage;
 import com.jy.cardme.components.StatusCode;
-import com.jy.cardme.dto.UserInfoDto;
+import com.jy.cardme.dto.UserDto;
 import com.jy.cardme.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,7 +29,7 @@ public class UserController {
     @GetMapping("/{userId}")
     public ResponseEntity getUserInfo(@PathVariable("userId") String userId) {
         final Object data = userService.getUserInfo(
-                UserInfoDto.builder().userId(userId).build());
+                UserDto.Info.builder().userId(userId).build());
         final DefaultRes res = DefaultRes.builder()
                 .message(ResponseMessage.READ_USER)
                 .httpStatus(StatusCode.OK)

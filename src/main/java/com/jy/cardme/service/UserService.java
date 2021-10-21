@@ -1,9 +1,6 @@
 package com.jy.cardme.service;
 
-import com.jy.cardme.dto.UserInfoDto;
-import com.jy.cardme.dto.UserSignInReq;
-import com.jy.cardme.dto.UserSignInRes;
-import com.jy.cardme.dto.UserSignUpReq;
+import com.jy.cardme.dto.*;
 
 public interface UserService {
     /* 공통 서비스
@@ -11,7 +8,7 @@ public interface UserService {
      * 아이디 찾기
      * 비밀번호 변경
      */
-    UserInfoDto signUp(UserSignUpReq userSignUpReq);
-    UserSignInRes signIn(UserSignInReq userSignInReq);
-    UserInfoDto getUserInfo(UserInfoDto userInfoDto);
+    UserDto.Info signUp(UserDto.SignUpReq userSignUpReq);
+    UserDto.SignInRes signIn(UserDto.SignInReq userSignInReq);
+    UserDto.Info getUserInfo(UserDto.Info userInfo);
 }
