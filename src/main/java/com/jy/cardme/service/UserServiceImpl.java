@@ -3,10 +3,7 @@ package com.jy.cardme.service;
 
 import com.jy.cardme.commonException.UserNotFoundException;
 import com.jy.cardme.dao.UserRepository;
-import com.jy.cardme.dto.UserInfoDto;
-import com.jy.cardme.dto.UserSignInReq;
-import com.jy.cardme.dto.UserSignInRes;
-import com.jy.cardme.dto.UserSignUpReq;
+import com.jy.cardme.dto.*;
 import com.jy.cardme.entity.UserEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -26,7 +23,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserInfoDto signUp(final UserSignUpReq userSignUpReq) {
+    public UserDto.Info signUp(final UserDto.SignUpReq userSignUpReq) {
         final UserEntity user = authService.pwEncrypting(
                 UserEntity.builder(userSignUpReq.getUserId())
                         .userPw(userSignUpReq.getUserPw())
@@ -36,18 +33,18 @@ public class UserServiceImpl implements UserService {
                         .build()
         );
         final UserEntity repoRet = userRepository.save(user);
-        final UserInfoDto userInfo = UserInfoDto.create(repoRet);
+        final UserDto.Info userInfo = UserDto.Info.createFromEntity(repoRet);
         return userInfo;
     }
 
     @Override
-    public UserSignInRes signIn(UserSignInReq userSignInReq) {
+    public UserDto.SignInRes signIn(UserDto.SignInReq userSignInReq) {
         final Optional<UserEntity> optional = userRepository.findById(userSignInReq.getUserId());
         if (!optional.isPresent()) {
             throw new UserNotFoundException(userSignInReq.getUserId());
         }
         final UserEntity user = optional.get();
-        UserSignInRes userSignInRes = UserSignInRes.builder()
+        UserDto.SignInRes userSignInRes = UserDto.SignInRes.builder()
                 .userId(user.getUserId())
                 .token(authService.issuingToken(userSignInReq,user))
                 .build();
@@ -55,12 +52,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserInfoDto getUserInfo(final UserInfoDto userInfoDto) {
-        final Optional<UserEntity> optional = userRepository.findById(userInfoDto.getUserId());
+    public UserDto.Info getUserInfo(final UserDto.Info userInfo) {
+        final Optional<UserEntity> optional = userRepository.findById(userInfo.getUserId());
         if (!optional.isPresent()) {
-            throw new UserNotFoundException(userInfoDto.getUserId());
+            throw new UserNotFoundException(userInfo.getUserId());
         }
-        final UserInfoDto userInfo = UserInfoDto.create(optional.get());
-        return userInfo;
+        final UserDto.Info info = UserDto.Info.createFromEntity(optional.get());
+        return info;
     }
 }

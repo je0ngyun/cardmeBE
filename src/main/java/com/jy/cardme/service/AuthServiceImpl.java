@@ -1,7 +1,7 @@
 package com.jy.cardme.service;
 
 import com.jy.cardme.commonException.WrongPassWordException;
-import com.jy.cardme.dto.UserSignInReq;
+import com.jy.cardme.dto.UserDto;
 import com.jy.cardme.entity.UserEntity;
 import com.jy.cardme.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +27,8 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public String issuingToken(UserSignInReq userSignInReq, UserEntity user) {
+    public String issuingToken(UserDto.SignInReq userSignInReq, UserEntity user) {
         if (!passwordEncoder.matches(userSignInReq.getUserPw(), user.getUserPw())) {
-            System.out.println("오류");
             throw new WrongPassWordException(user.getUserPw());
         }
         return jwtTokenProvider.createToken(user.getUsername(), user.getRoles());

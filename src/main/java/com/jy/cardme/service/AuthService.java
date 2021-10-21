@@ -1,6 +1,6 @@
 package com.jy.cardme.service;
 
-import com.jy.cardme.dto.UserSignInReq;
+import com.jy.cardme.dto.UserDto;
 import com.jy.cardme.entity.UserEntity;
 
 public interface AuthService {
@@ -10,5 +10,5 @@ public interface AuthService {
      * 토큰 인증
      */
     UserEntity pwEncrypting(UserEntity user);
-    String issuingToken(UserSignInReq userSignInReq, UserEntity user);
+    String issuingToken(UserDto.SignInReq userSignInReq, UserEntity user);
 }

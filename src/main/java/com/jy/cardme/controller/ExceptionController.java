@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class ExceptionController {
     @GetMapping("/jwt/wrong-type-token")
     public ResponseEntity wrongTypeToken(){
-        throw new CommonTokenException(ResponseMessage.WRONG_TOKEN);
+        throw new CommonTokenException(ResponseMessage.WRONG_TYPE_TOKEN);
     }
     @GetMapping("/jwt/expired-token")
     public ResponseEntity expiredToken(){
