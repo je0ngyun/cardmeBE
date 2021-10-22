@@ -38,8 +38,8 @@ public class UserDto {
         private String userEm;
     }
 
-    @Getter
-    @AllArgsConstructor
+    @Data
+    @AllArgsConstructor(access = AccessLevel.PRIVATE)
     @Builder
     public static class Info{
         private String userId;
