@@ -2,6 +2,7 @@ package com.jy.cardme.configuration;
 
 import com.jy.cardme.security.JwtAuthenticationEntryPoint;
 import com.jy.cardme.security.JwtAuthenticationFilter;
+import com.jy.cardme.security.JwtAuthorizationEntryPoint;
 import com.jy.cardme.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -53,6 +54,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().permitAll()
                 .and()
                 .exceptionHandling().authenticationEntryPoint(new JwtAuthenticationEntryPoint())
+                .accessDeniedHandler(new JwtAuthorizationEntryPoint())
                 .and()
                 .addFilterBefore(new JwtAuthenticationFilter(jwtTokenProvider),
                         UsernamePasswordAuthenticationFilter.class);
