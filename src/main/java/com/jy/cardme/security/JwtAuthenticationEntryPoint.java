@@ -27,6 +27,9 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         else if(exceptionCode == TokenExceptionCode.WRONG_TOKEN){
             response.sendRedirect("/exception/jwt/wrong-token");
         }
+        else if(exceptionCode == TokenExceptionCode.NOT_FOUND_TOKEN_HEADER){
+            response.sendRedirect("/exception/jwt/not-found-token-header");
+        }
         else{
             response.sendRedirect("exception/jwt/unknown-token-exception");
         }

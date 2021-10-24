@@ -17,5 +17,6 @@ public class ResponseMessage {
     public static final String EXPIRED_TOKEN = "만료된 토큰";
     public static final String UNSUPPORTED_TOKEN = "지원하지 않는 토큰";
     public static final String WRONG_TOKEN = "토큰값이 비었거나 잘못된 토큰";
-    public static final String UNKNOWN_TOKEN_ERROR= "알수없는 토큰 오류";
+    public static final String UNKNOWN_TOKEN_ERROR = "알수없는 토큰 오류";
+    public static final String NOT_FOUND_TOKEN_HEADER = "요청 헤더에 X-AUTH-TOKEN 필드가 없습니다.";
 }
