@@ -30,4 +30,8 @@ public class ExceptionController {
     public ResponseEntity unknownException(){
         throw new CommonTokenException(ResponseMessage.UNKNOWN_TOKEN_ERROR);
     }
+    @GetMapping("jwt/not-found-token-header")
+    public ResponseEntity notFoundTokenHeaderException(){
+        throw new CommonTokenException(ResponseMessage.NOT_FOUND_TOKEN_HEADER);
+    }
 }
