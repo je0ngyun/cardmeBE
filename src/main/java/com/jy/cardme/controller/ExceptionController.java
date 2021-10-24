@@ -1,6 +1,7 @@
 package com.jy.cardme.controller;
 
 import com.jy.cardme.commonException.CommonTokenException;
+import com.jy.cardme.commonException.NotAuthorizationException;
 import com.jy.cardme.components.ResponseMessage;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,12 +27,16 @@ public class ExceptionController {
     public ResponseEntity wrongToken(){
         throw new CommonTokenException(ResponseMessage.WRONG_TOKEN);
     }
+    @GetMapping("jwt/not-found-token-header")
+    public ResponseEntity notFoundTokenHeader(){
+        throw new CommonTokenException(ResponseMessage.NOT_FOUND_TOKEN_HEADER);
+    }
     @GetMapping("jwt/unknown-token-exception")
     public ResponseEntity unknownException(){
         throw new CommonTokenException(ResponseMessage.UNKNOWN_TOKEN_ERROR);
     }
-    @GetMapping("jwt/not-found-token-header")
-    public ResponseEntity notFoundTokenHeaderException(){
-        throw new CommonTokenException(ResponseMessage.NOT_FOUND_TOKEN_HEADER);
+    @GetMapping("jwt/not-authorization")
+    public ResponseEntity notAuthorization(){
+        throw new NotAuthorizationException(ResponseMessage.NOT_AUTHORIZATION);
     }
 }

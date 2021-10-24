@@ -1,6 +1,7 @@
 package com.jy.cardme.advice;
 
 import com.jy.cardme.commonException.CommonTokenException;
+import com.jy.cardme.commonException.NotAuthorizationException;
 import com.jy.cardme.commonException.UserNotFoundException;
 import com.jy.cardme.commonException.WrongPassWordException;
 import com.jy.cardme.components.ResponseMessage;
@@ -66,10 +67,20 @@ public class ApiControllerAdvice {
     }
 
     @ExceptionHandler(value = {CommonTokenException.class})
-    public ResponseEntity<Object> handleIllegalArgumentException(CommonTokenException ex){
+    public ResponseEntity<Object> handleJwtTokenException(CommonTokenException ex){
         final ErrorRes errorRes = ErrorRes.builder()
                 .message(ex.getMessage())
                 .httpStatus(StatusCode.UNAUTHORIZED)
+                .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
+                .build();
+        return new ResponseEntity<>(errorRes,HttpStatus.UNAUTHORIZED);
+    }
+
+    @ExceptionHandler(value = {NotAuthorizationException.class})
+    public ResponseEntity<Object> NotAuthorizationException(NotAuthorizationException ex){
+        final ErrorRes errorRes = ErrorRes.builder()
+                .message(ex.getMessage())
+                .httpStatus(StatusCode.FORBIDDEN)
                 .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
                 .build();
         return new ResponseEntity<>(errorRes,HttpStatus.FORBIDDEN);
