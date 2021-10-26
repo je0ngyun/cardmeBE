@@ -5,16 +5,18 @@ import com.jy.cardme.components.ResponseMessage;
 import com.jy.cardme.components.StatusCode;
 import com.jy.cardme.dto.UserDto;
 import com.jy.cardme.service.UserService;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.io.InputStream;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -53,5 +55,13 @@ public class RootController {
                 .data(data)
                 .build();
         return new ResponseEntity(res, HttpStatus.OK);
+    }
+
+    @GetMapping("/svg-return-test")
+    public ResponseEntity<String> test() throws IOException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.valueOf("image/svg+xml"));
+        InputStream in = getClass().getResourceAsStream("/static/testsvg.svg");
+        return new ResponseEntity<>(IOUtils.toString(in,"UTF-8"),headers,HttpStatus.OK);
     }
 }
