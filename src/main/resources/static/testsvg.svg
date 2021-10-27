@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="195" viewBox="0 0 400 195" fill="none">
+    <style>
+      .header {
+          font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+          fill: #7957d5;
+          animation: fadeInAnimation 0.8s ease-in-out forwards;
+      }
+    </style>
+
+    <rect data-testid="card-bg" x="0.5" y="0.5" rx="4.5" height="99%" stroke="#e4e2e2" width="400" fill="#ffffff" stroke-opacity="1"/>
+    
+    <g data-testid="card-title" transform="translate(25, 35)">
+        <g transform="translate(0, 0)">
+            <text x="0" y="0" class="header" data-testid="header">Kim Jeong Yun</text>
+        </g>
+    </g>
+</svg>

@@ -1,8 +1,7 @@
 package com.jy.cardme.controller;
 
-import com.jy.cardme.components.DefaultRes;
-import com.jy.cardme.components.ResponseMessage;
-import com.jy.cardme.components.StatusCode;
+import com.jy.cardme.components.commons.ResponseMessage;
+import com.jy.cardme.components.commons.StatusCode;
 import com.jy.cardme.dto.UserDto;
 import com.jy.cardme.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;

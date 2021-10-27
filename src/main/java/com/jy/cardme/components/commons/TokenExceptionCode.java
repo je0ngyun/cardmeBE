@@ -1,4 +1,4 @@
-package com.jy.cardme.components;
+package com.jy.cardme.components.commons;
 
 public class TokenExceptionCode {
     public static final int WRONG_TYPE_TOKEN = 1;

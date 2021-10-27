@@ -1,4 +1,4 @@
-package com.jy.cardme.components;
+package com.jy.cardme.components.commons;
 
 public class StatusCode {
     public static final int OK = 200;

@@ -1,7 +1,7 @@
 package com.jy.cardme.service;
 
 
-import com.jy.cardme.commonException.UserNotFoundException;
+import com.jy.cardme.exception.UserNotFoundException;
 import com.jy.cardme.dao.UserRepository;
 import com.jy.cardme.dto.*;
 import com.jy.cardme.entity.UserEntity;
@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto.Info signUp(final UserDto.SignUpReq userSignUpReq) {
-        final UserEntity user = authService.pwEncrypting(
+        final UserEntity user = authService.encryptingPw(
                 UserEntity.builder(userSignUpReq.getUserId())
                         .userPw(userSignUpReq.getUserPw())
                         .userNm(userSignUpReq.getUserNm())

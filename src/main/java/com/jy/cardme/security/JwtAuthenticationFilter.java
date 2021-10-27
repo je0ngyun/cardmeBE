@@ -1,6 +1,6 @@
 package com.jy.cardme.security;
 
-import com.jy.cardme.components.TokenExceptionCode;
+import com.jy.cardme.components.commons.TokenExceptionCode;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.SignatureException;

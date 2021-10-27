@@ -1,4 +1,4 @@
-package com.jy.cardme.commonException;
+package com.jy.cardme.exception;
 
 import lombok.AllArgsConstructor;
 

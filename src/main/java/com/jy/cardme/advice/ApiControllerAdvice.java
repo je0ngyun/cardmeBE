@@ -1,11 +1,12 @@
 package com.jy.cardme.advice;
 
-import com.jy.cardme.commonException.CommonTokenException;
-import com.jy.cardme.commonException.NotAuthorizationException;
-import com.jy.cardme.commonException.UserNotFoundException;
-import com.jy.cardme.commonException.WrongPassWordException;
-import com.jy.cardme.components.ResponseMessage;
-import com.jy.cardme.components.StatusCode;
+import com.jy.cardme.controller.ErrorRes;
+import com.jy.cardme.exception.CommonTokenException;
+import com.jy.cardme.exception.NotAuthorizationException;
+import com.jy.cardme.exception.UserNotFoundException;
+import com.jy.cardme.exception.WrongPassWordException;
+import com.jy.cardme.components.commons.ResponseMessage;
+import com.jy.cardme.components.commons.StatusCode;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
