@@ -1,6 +1,6 @@
 package com.jy.cardme.security;
 
-import com.jy.cardme.components.TokenExceptionCode;
+import com.jy.cardme.components.commons.TokenExceptionCode;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.stereotype.Component;

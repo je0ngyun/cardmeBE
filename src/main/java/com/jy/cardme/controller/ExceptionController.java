@@ -1,8 +1,8 @@
 package com.jy.cardme.controller;
 
-import com.jy.cardme.commonException.CommonTokenException;
-import com.jy.cardme.commonException.NotAuthorizationException;
-import com.jy.cardme.components.ResponseMessage;
+import com.jy.cardme.exception.CommonTokenException;
+import com.jy.cardme.exception.NotAuthorizationException;
+import com.jy.cardme.components.commons.ResponseMessage;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

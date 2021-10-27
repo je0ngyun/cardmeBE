@@ -1,4 +1,4 @@
-package com.jy.cardme.commonException;
+package com.jy.cardme.exception;
 
 public class NotAuthorizationException extends RuntimeException{
     private String s;

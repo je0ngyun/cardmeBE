@@ -1,11 +1,10 @@
 package com.jy.cardme.controller;
 
-import com.jy.cardme.components.DefaultRes;
-import com.jy.cardme.components.ResponseMessage;
-import com.jy.cardme.components.StatusCode;
+import com.jy.cardme.components.commons.ResponseMessage;
+import com.jy.cardme.components.commons.StatusCode;
 import com.jy.cardme.dto.UserDto;
+import com.jy.cardme.service.CardService;
 import com.jy.cardme.service.UserService;
-import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.HttpHeaders;
@@ -16,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.io.IOException;
-import java.io.InputStream;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -26,11 +24,13 @@ import java.time.ZonedDateTime;
 public class RootController {
     private final UserService userService;
     private final Environment environment;
+    private final CardService cardService;
 
     @Autowired
-    public RootController(UserService userService, Environment environment) {
+    public RootController(UserService userService, Environment environment, CardService cardService) {
         this.userService = userService;
         this.environment = environment;
+        this.cardService = cardService;
     }
 
     @PostMapping("/signup")
@@ -61,7 +61,7 @@ public class RootController {
     public ResponseEntity<String> test() throws IOException {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.valueOf("image/svg+xml"));
-        InputStream in = getClass().getResourceAsStream("/static/testsvg.svg");
-        return new ResponseEntity<>(IOUtils.toString(in,"UTF-8"),headers,HttpStatus.OK);
+        String cardSvg = cardService.generatingCard();
+        return new ResponseEntity<>(cardSvg,headers,HttpStatus.OK);
     }
 }

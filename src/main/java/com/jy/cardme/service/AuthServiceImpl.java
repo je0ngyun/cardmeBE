@@ -1,6 +1,6 @@
 package com.jy.cardme.service;
 
-import com.jy.cardme.commonException.WrongPassWordException;
+import com.jy.cardme.exception.WrongPassWordException;
 import com.jy.cardme.dto.UserDto;
 import com.jy.cardme.entity.UserEntity;
 import com.jy.cardme.security.JwtTokenProvider;
@@ -20,7 +20,7 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public UserEntity pwEncrypting(UserEntity user) {
+    public UserEntity encryptingPw(UserEntity user) {
         String encodedPw = passwordEncoder.encode(user.getUserPw());
         user.setUserPw(encodedPw);
         return user;

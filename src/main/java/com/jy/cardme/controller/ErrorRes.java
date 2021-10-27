@@ -1,5 +1,6 @@
-package com.jy.cardme.advice;
+package com.jy.cardme.controller;
 
+import com.jy.cardme.advice.FieldErrorDetail;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

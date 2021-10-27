@@ -1,4 +1,4 @@
-package com.jy.cardme.components;
+package com.jy.cardme.controller;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
