@@ -35,7 +35,7 @@ public class RootController {
 
     @PostMapping("/signup")
     public ResponseEntity signUp(@RequestBody @Valid final UserDto.SignUpReq userSignUpReq) {
-        final Object data = userService.signUp(userSignUpReq);
+        final UserDto.Info data = userService.signUp(userSignUpReq);
         final DefaultRes res = DefaultRes.builder()
                 .message(ResponseMessage.CREATED_USER)
                 .httpStatus(StatusCode.CREATED)
@@ -47,7 +47,7 @@ public class RootController {
 
     @PostMapping("/signin")
     public ResponseEntity signIn(@RequestBody final UserDto.SignInReq userSignInReq) {
-        final Object data = userService.signIn(userSignInReq);
+        final UserDto.SignInRes data = userService.signIn(userSignInReq);
         final DefaultRes res = DefaultRes.builder()
                 .message(ResponseMessage.LOGIN_SUCCESS)
                 .httpStatus(StatusCode.OK)

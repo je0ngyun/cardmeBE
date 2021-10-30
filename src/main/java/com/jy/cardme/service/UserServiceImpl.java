@@ -38,7 +38,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDto.SignInRes signIn(UserDto.SignInReq userSignInReq) {
+    public UserDto.SignInRes signIn(final UserDto.SignInReq userSignInReq) {
         final Optional<UserEntity> optional = userRepository.findById(userSignInReq.getUserId());
         if (!optional.isPresent()) {
             throw new UserNotFoundException(userSignInReq.getUserId());
