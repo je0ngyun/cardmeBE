@@ -20,4 +20,5 @@ public class ResponseMessage {
     public static final String UNKNOWN_TOKEN_ERROR = "알수없는 토큰 오류";
     public static final String NOT_FOUND_TOKEN_HEADER = "요청 헤더에 X-AUTH-TOKEN 필드가 없습니다.";
     public static final String NOT_AUTHORIZATION = "해당 요청에 권한이 없는 사용자입니다";
+    public static final String SIGN_CARD_SUCCESS = "카드 생성 성공";
 }

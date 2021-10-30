@@ -27,7 +27,7 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public ResponseEntity getUserInfo(@PathVariable("userId") String userId) {
-        final Object data = userService.getUserInfo(
+        final UserDto.Info data = userService.getUserInfo(
                 UserDto.Info.builder().userId(userId).build());
         final DefaultRes res = DefaultRes.builder()
                 .message(ResponseMessage.READ_USER)
