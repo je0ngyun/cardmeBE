@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 public class UserDto {
     @Data
     @AllArgsConstructor
-    public static class SignInReq{
+    public static class SignInReq {
         @NotBlank
         private String userId;
         @NotBlank
@@ -19,14 +19,14 @@ public class UserDto {
     @Data
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     @Builder
-    public static class SignInRes{
+    public static class SignInRes {
         private String userId;
         private String token;
     }
 
     @Data
     @AllArgsConstructor
-    public static class SignUpReq{
+    public static class SignUpReq {
         @NotBlank
         private String userId;
         @NotBlank
@@ -41,10 +41,11 @@ public class UserDto {
     @Data
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     @Builder
-    public static class Info{
+    public static class Info {
         private String userId;
         private String userNm;
         private String userEm;
+
         public static Info createFromEntity(final UserEntity user) {
             return builder()
                     .userId(user.getUserId())

@@ -32,7 +32,7 @@ public class UserEntity implements UserDetails {
     private List<String> roles = new ArrayList<>();
 
     public static UserEntityBuilder builder(final String id) {
-        if(id == null) {
+        if (id == null) {
             throw new IllegalArgumentException("필수 파라미터 누락");
         }
         return userEntityBuilder().userId(id);

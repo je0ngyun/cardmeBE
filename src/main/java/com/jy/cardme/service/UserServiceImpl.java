@@ -1,10 +1,11 @@
 package com.jy.cardme.service;
 
 
-import com.jy.cardme.exception.UserNotFoundException;
+import com.jy.cardme.components.commons.ResponseMessage;
 import com.jy.cardme.dao.UserRepository;
-import com.jy.cardme.dto.*;
+import com.jy.cardme.dto.UserDto;
 import com.jy.cardme.entity.UserEntity;
+import com.jy.cardme.exception.Common404Exception;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,7 +42,7 @@ public class UserServiceImpl implements UserService {
     public UserDto.SignInRes signIn(final UserDto.SignInReq userSignInReq) {
         final Optional<UserEntity> optional = userRepository.findById(userSignInReq.getUserId());
         if (!optional.isPresent()) {
-            throw new UserNotFoundException(userSignInReq.getUserId());
+            throw new Common404Exception(ResponseMessage.NOT_FOUND_USER);
         }
         final UserEntity user = optional.get();
         UserDto.SignInRes userSignInRes = UserDto.SignInRes.builder()
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
     public UserDto.Info getUserInfo(final UserDto.Info userInfo) {
         final Optional<UserEntity> optional = userRepository.findById(userInfo.getUserId());
         if (!optional.isPresent()) {
-            throw new UserNotFoundException(userInfo.getUserId());
+            throw new Common404Exception(ResponseMessage.NOT_FOUND_USER);
         }
         final UserDto.Info info = UserDto.Info.createFromEntity(optional.get());
         return info;

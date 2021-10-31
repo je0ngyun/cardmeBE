@@ -9,6 +9,8 @@ public interface UserService {
      * 비밀번호 변경
      */
     UserDto.Info signUp(UserDto.SignUpReq userSignUpReq);
+
     UserDto.SignInRes signIn(UserDto.SignInReq userSignInReq);
+
     UserDto.Info getUserInfo(UserDto.Info userInfo);
 }

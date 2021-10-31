@@ -5,7 +5,8 @@ public class ResponseMessage {
     public static final String LOGIN_FAIL = "로그인 실패";
     public static final String WRONG_PASSWORD = "올바르지 않은 비밀번호";
     public static final String READ_USER = "회원 정보 조회 성공";
-    public static final String USER_NOT_FOUND = "회원을 찾을 수 없습니다";
+    public static final String NOT_FOUND_USER = "회원을 찾을 수 없습니다";
+    public static final String NOT_REGISTER_USER = "가입되지 않은 회원";
     public static final String CREATED_USER = "회원 가입 성공";
     public static final String UPDATE_USER = "회원 정보 수정 성공";
     public static final String DELETE_USER = "회원 탈퇴 성공";

@@ -62,6 +62,6 @@ public class RootController {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.valueOf("image/svg+xml"));
         String cardSvg = cardService.generatingCard();
-        return new ResponseEntity<>(cardSvg,headers,HttpStatus.OK);
+        return new ResponseEntity<>(cardSvg, headers, HttpStatus.OK);
     }
 }

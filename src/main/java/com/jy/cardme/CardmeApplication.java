@@ -6,7 +6,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 @SpringBootApplication
 public class CardmeApplication {
     private static final String APPLICATION =
-                    "spring.config.location=" +
+            "spring.config.location=" +
                     "classpath:/application.yml," +
                     "classpath:/private.yml";
 

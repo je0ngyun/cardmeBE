@@ -30,7 +30,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public CardDto.SignRes signCard(final CardDto.SignReq cardSignReq){
+    public CardDto.SignRes signCard(final CardDto.SignReq cardSignReq) {
         final UserEntity temp = UserEntity.userEntityBuilder()
                 .userId(cardSignReq.getUserId())
                 .build();

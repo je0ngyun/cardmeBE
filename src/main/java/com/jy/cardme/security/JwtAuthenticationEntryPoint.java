@@ -15,22 +15,17 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
     @Override
     public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
         int exceptionCode = (int) request.getAttribute("exception");
-        if(exceptionCode == TokenExceptionCode.WRONG_TYPE_TOKEN){
+        if (exceptionCode == TokenExceptionCode.WRONG_TYPE_TOKEN) {
             response.sendRedirect("/exception/jwt/wrong-type-token");
-        }
-        else if(exceptionCode == TokenExceptionCode.EXPIRED_TOKEN){
+        } else if (exceptionCode == TokenExceptionCode.EXPIRED_TOKEN) {
             response.sendRedirect("/exception/jwt/expired-token");
-        }
-        else if(exceptionCode == TokenExceptionCode.UNSUPPORTED_TOKEN){
+        } else if (exceptionCode == TokenExceptionCode.UNSUPPORTED_TOKEN) {
             response.sendRedirect("/exception/jwt/unsupported-token");
-        }
-        else if(exceptionCode == TokenExceptionCode.WRONG_TOKEN){
+        } else if (exceptionCode == TokenExceptionCode.WRONG_TOKEN) {
             response.sendRedirect("/exception/jwt/wrong-token");
-        }
-        else if(exceptionCode == TokenExceptionCode.NOT_FOUND_TOKEN_HEADER){
+        } else if (exceptionCode == TokenExceptionCode.NOT_FOUND_TOKEN_HEADER) {
             response.sendRedirect("/exception/jwt/not-found-token-header");
-        }
-        else{
+        } else {
             response.sendRedirect("exception/jwt/unknown-token-exception");
         }
     }
