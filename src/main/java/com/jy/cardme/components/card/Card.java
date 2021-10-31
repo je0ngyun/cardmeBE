@@ -8,6 +8,7 @@ import java.io.IOException;
 public abstract class Card {
 
     protected Document doc;
+
     public abstract String getSvgString();
 
     public enum CardType {

@@ -12,31 +12,37 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/exception")
 public class ExceptionController {
     @GetMapping("/jwt/wrong-type-token")
-    public ResponseEntity wrongTypeToken(){
+    public ResponseEntity wrongTypeToken() {
         throw new CommonTokenException(ResponseMessage.WRONG_TYPE_TOKEN);
     }
+
     @GetMapping("/jwt/expired-token")
-    public ResponseEntity expiredToken(){
+    public ResponseEntity expiredToken() {
         throw new CommonTokenException(ResponseMessage.EXPIRED_TOKEN);
     }
+
     @GetMapping("/jwt/unsupported-token")
-    public ResponseEntity unsupportedToken(){
+    public ResponseEntity unsupportedToken() {
         throw new CommonTokenException(ResponseMessage.UNSUPPORTED_TOKEN);
     }
+
     @GetMapping("/jwt/wrong-token")
-    public ResponseEntity wrongToken(){
+    public ResponseEntity wrongToken() {
         throw new CommonTokenException(ResponseMessage.WRONG_TOKEN);
     }
+
     @GetMapping("jwt/not-found-token-header")
-    public ResponseEntity notFoundTokenHeader(){
+    public ResponseEntity notFoundTokenHeader() {
         throw new CommonTokenException(ResponseMessage.NOT_FOUND_TOKEN_HEADER);
     }
+
     @GetMapping("jwt/unknown-token-exception")
-    public ResponseEntity unknownException(){
+    public ResponseEntity unknownException() {
         throw new CommonTokenException(ResponseMessage.UNKNOWN_TOKEN_ERROR);
     }
+
     @GetMapping("jwt/not-authorization")
-    public ResponseEntity notAuthorization(){
+    public ResponseEntity notAuthorization() {
         throw new NotAuthorizationException(ResponseMessage.NOT_AUTHORIZATION);
     }
 }

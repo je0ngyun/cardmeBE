@@ -9,5 +9,6 @@ public interface AuthService {
      * 토큰 발급
      */
     UserEntity encryptingPw(UserEntity user);
+
     String issuingToken(UserDto.SignInReq userSignInReq, UserEntity user);
 }

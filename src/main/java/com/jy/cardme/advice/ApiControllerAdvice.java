@@ -1,10 +1,7 @@
 package com.jy.cardme.advice;
 
 import com.jy.cardme.controller.ErrorRes;
-import com.jy.cardme.exception.CommonTokenException;
-import com.jy.cardme.exception.NotAuthorizationException;
-import com.jy.cardme.exception.UserNotFoundException;
-import com.jy.cardme.exception.WrongPassWordException;
+import com.jy.cardme.exception.*;
 import com.jy.cardme.components.commons.ResponseMessage;
 import com.jy.cardme.components.commons.StatusCode;
 import org.springframework.http.HttpStatus;
@@ -22,16 +19,6 @@ import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class ApiControllerAdvice {
-    @ExceptionHandler(value = {UserNotFoundException.class})
-    public ResponseEntity<Object> handleUserNotExistException(UserNotFoundException ex) {
-        final ErrorRes errorRes = ErrorRes.builder()
-                .message(ResponseMessage.USER_NOT_FOUND)
-                .httpStatus(StatusCode.NOT_FOUND)
-                .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
-                .build();
-
-        return new ResponseEntity<>(errorRes, HttpStatus.NOT_FOUND);
-    }
 
     @ExceptionHandler(value = {MethodArgumentNotValidException.class})
     public ResponseEntity<Object> handleValidationExceptions(MethodArgumentNotValidException ex) {
@@ -55,35 +42,43 @@ public class ApiControllerAdvice {
         return new ResponseEntity<>(errorRes, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = {WrongPassWordException.class})
-    public ResponseEntity<Object> handleBadCredentialsException(WrongPassWordException ex) {
-
-        final ErrorRes errorRes = ErrorRes.builder()
-                .message(ResponseMessage.WRONG_PASSWORD)
-                .httpStatus(StatusCode.BAD_REQUEST)
-                .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
-                .build();
-
-        return new ResponseEntity<>(errorRes, HttpStatus.BAD_REQUEST);
-    }
-
     @ExceptionHandler(value = {CommonTokenException.class})
-    public ResponseEntity<Object> handleJwtTokenException(CommonTokenException ex){
+    public ResponseEntity handleJwtTokenException(CommonTokenException ex) {
         final ErrorRes errorRes = ErrorRes.builder()
                 .message(ex.getMessage())
                 .httpStatus(StatusCode.UNAUTHORIZED)
                 .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
                 .build();
-        return new ResponseEntity<>(errorRes,HttpStatus.UNAUTHORIZED);
+        return new ResponseEntity(errorRes, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(value = {NotAuthorizationException.class})
-    public ResponseEntity<Object> NotAuthorizationException(NotAuthorizationException ex){
+    public ResponseEntity handleNotAuthorizationException(NotAuthorizationException ex) {
         final ErrorRes errorRes = ErrorRes.builder()
                 .message(ex.getMessage())
                 .httpStatus(StatusCode.FORBIDDEN)
                 .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
                 .build();
-        return new ResponseEntity<>(errorRes,HttpStatus.FORBIDDEN);
+        return new ResponseEntity(errorRes, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(value = {Common400Exception.class})
+    public ResponseEntity handleCommon400Exception(Common400Exception ex) {
+        final ErrorRes errorRes = ErrorRes.builder()
+                .message(ex.getMessage())
+                .httpStatus(StatusCode.BAD_REQUEST)
+                .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
+                .build();
+        return new ResponseEntity(errorRes, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(value = {Common404Exception.class})
+    public ResponseEntity handleCommon404Exception(Common404Exception ex) {
+        final ErrorRes errorRes = ErrorRes.builder()
+                .message(ex.getMessage())
+                .httpStatus(StatusCode.NOT_FOUND)
+                .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
+                .build();
+        return new ResponseEntity(errorRes, HttpStatus.NOT_FOUND);
     }
 }

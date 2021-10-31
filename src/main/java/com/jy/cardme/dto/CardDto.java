@@ -40,6 +40,7 @@ public class CardDto {
         private String cardEmail;
         private String cardDepartment;
         private String cardSkill;
+
         public static SignRes createFromEntity(final CardEntity card) {
             return builder()
                     .cardName(card.getCardName())

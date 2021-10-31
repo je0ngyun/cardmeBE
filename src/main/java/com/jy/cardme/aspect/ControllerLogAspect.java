@@ -26,7 +26,7 @@ public class ControllerLogAspect {
         ResponseEntity result = (ResponseEntity) pjp.proceed();
 
         long endAt = System.currentTimeMillis();
-        log.info("{} {} {} {}ms",method, path, result.getStatusCode(), endAt - startAt);
+        log.info("{} {} {} {}ms", method, path, result.getStatusCode(), endAt - startAt);
 
         return result;
     }
