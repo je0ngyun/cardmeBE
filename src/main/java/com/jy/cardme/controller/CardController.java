@@ -36,7 +36,7 @@ public class CardController {
 
     @PostMapping("/sign")
     public ResponseEntity signCard(@RequestBody @Valid final CardDto.SignReq cardSignReq) {
-        final CardDto.SignRes data = cardService.signCard(cardSignReq);
+        final CardDto.Info data = cardService.signCard(cardSignReq);
         final DefaultRes res = DefaultRes.builder()
                 .message(ResponseMessage.SIGN_CARD_SUCCESS)
                 .httpStatus(StatusCode.CREATED)

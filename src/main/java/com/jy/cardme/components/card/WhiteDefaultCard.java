@@ -11,9 +11,4 @@ public class WhiteDefaultCard extends Card {
         InputStream in = getClass().getResourceAsStream("/static/testsvg.svg");
         super.doc = Jsoup.parse(IOUtils.toString(in, "UTF-8"));
     }
-
-    @Override
-    public String getSvgString() {
-        return super.doc.body().child(0).toString();
-    }
 }
