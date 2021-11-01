@@ -1,5 +1,6 @@
 package com.jy.cardme.components.card;
 
+import com.jy.cardme.entity.CardEntity;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
@@ -15,8 +16,8 @@ public abstract class Card {
         WhiteDefault
     }
 
-    public static Card CardFactory(CardType cardType) throws IOException { //card info dto 매개변수 추가 필요
-        Card card;
+    public static Card CardFactory(CardType cardType, CardEntity cardEntity) throws IOException {
+        final Card card;
         switch (cardType) {
             case WhiteDefault:
                 card = new WhiteDefaultCard();
@@ -24,13 +25,12 @@ public abstract class Card {
             default:
                 throw new IllegalStateException("Unexpected value: " + cardType);
         }
-        card.setCardTitle();
+        card.setCardTitle(cardEntity.getCardTitle());
         return card;
     }
 
-    //card info dto 기반으로 Svg 추가처리 필요
-    public void setCardTitle() {
-        Element title = doc.getElementById("card-title");
-        title.text("test");
+    public void setCardTitle(String title) {
+        final Element cardTitle = doc.getElementById("card-title");
+        cardTitle.text(title);
     }
 }

@@ -22,7 +22,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public UserEntity encryptingPw(UserEntity user) {
-        String encodedPw = passwordEncoder.encode(user.getUserPw());
+        final String encodedPw = passwordEncoder.encode(user.getUserPw());
         user.setUserPw(encodedPw);
         return user;
     }

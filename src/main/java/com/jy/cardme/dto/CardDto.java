@@ -52,4 +52,13 @@ public class CardDto {
                     .build();
         }
     }
+
+    @Data
+    @AllArgsConstructor
+    public static class UseReq {
+        @NotBlank
+        private String userId;
+        @NotBlank
+        private String cardName;
+    }
 }

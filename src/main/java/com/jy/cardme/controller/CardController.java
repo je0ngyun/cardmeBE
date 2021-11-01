@@ -5,14 +5,14 @@ import com.jy.cardme.components.commons.StatusCode;
 import com.jy.cardme.dto.CardDto;
 import com.jy.cardme.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -24,6 +24,14 @@ public class CardController {
     @Autowired
     public CardController(CardService cardService) {
         this.cardService = cardService;
+    }
+
+    @GetMapping("")
+    public ResponseEntity<String> useCard(@ModelAttribute CardDto.UseReq cardUseReq) throws IOException {
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.valueOf("image/svg+xml"));
+        final String cardSvg = cardService.generatingCard(cardUseReq);
+        return new ResponseEntity<>(cardSvg, headers, HttpStatus.OK);
     }
 
     @PostMapping("/sign")
