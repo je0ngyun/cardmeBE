@@ -27,16 +27,15 @@ public class CardServiceImpl implements CardService {
     @Override
     public String generatingCard(CardDto.UseReq cardUseReq) throws IOException {
         final UserEntity temp = UserEntity.builder(cardUseReq.getUserId()).build();
-        final Optional<CardEntity> optional = cardRepository.findByUserAndCardName(temp, "default");
+        final Optional<CardEntity> optional = cardRepository.findByUserAndCardName(temp,cardUseReq.getCardName());
         if (!optional.isPresent()) {
             throw new Common404Exception(ResponseMessage.NOT_FOUND_CARD);
         }
-        final Card.CardType cardType = Card.CardType.valueOf("WhiteDefault"); //카드타입 DB 추가 필요
-        return Card.CardFactory(cardType, optional.get()).getSvgString();
+        return Card.CardFactory(optional.get()).getSvgString();
     }
 
     @Override
-    public CardDto.SignRes signCard(final CardDto.SignReq cardSignReq) {
+    public CardDto.Info signCard(final CardDto.SignReq cardSignReq) {
         final UserEntity temp = UserEntity.builder(cardSignReq.getUserId()).build();
         final Optional<CardEntity> optional = cardRepository.findByUserAndCardName(temp, cardSignReq.getCardName());
         if (optional.isPresent()) {
@@ -50,9 +49,10 @@ public class CardServiceImpl implements CardService {
                 .cardEmail(cardSignReq.getCardEmail())
                 .cardDepartment(cardSignReq.getCardDepartment())
                 .cardSkill(cardSignReq.getCardSkill())
+                .cardType(Enum.valueOf(Card.CardType.class,cardSignReq.getCardType()))
                 .build();
         final CardEntity repoRet = cardRepository.save(card);
-        final CardDto.SignRes cardSignRes = CardDto.SignRes.createFromEntity(repoRet);
+        final CardDto.Info cardSignRes = CardDto.Info.createFromEntity(repoRet);
         return cardSignRes;
     }
 }

@@ -16,6 +16,8 @@ public class CardDto {
         @NotBlank
         private String userId;
         @NotBlank
+        private String cardType;
+        @NotBlank
         private String cardName;
         @NotBlank
         private String cardTitle;
@@ -33,15 +35,16 @@ public class CardDto {
     @Data
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     @Builder
-    public static class SignRes {
+    public static class Info {
         private String cardName;
         private String cardTitle;
         private String cardMotto;
         private String cardEmail;
         private String cardDepartment;
         private String cardSkill;
+        private String cardType;
 
-        public static SignRes createFromEntity(final CardEntity card) {
+        public static Info createFromEntity(final CardEntity card) {
             return builder()
                     .cardName(card.getCardName())
                     .cardTitle(card.getCardTitle())
@@ -49,6 +52,7 @@ public class CardDto {
                     .cardEmail(card.getCardEmail())
                     .cardDepartment(card.getCardDepartment())
                     .cardSkill(card.getCardSkill())
+                    .cardType(card.getCardType().toString())
                     .build();
         }
     }

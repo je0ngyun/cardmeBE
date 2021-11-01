@@ -1,5 +1,6 @@
 package com.jy.cardme.entity;
 
+import com.jy.cardme.components.card.Card;
 import lombok.*;
 
 import javax.persistence.*;
@@ -16,12 +17,15 @@ public class CardEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
-    private String cardName;
-
     @ManyToOne
     @JoinColumn(name = "userId", nullable = false)
     private UserEntity user;
+
+    @Column(nullable = false)
+    private String cardName;
+
+    @Enumerated(EnumType.STRING)
+    private Card.CardType cardType;
 
     @Column(nullable = false)
     private String cardTitle;
