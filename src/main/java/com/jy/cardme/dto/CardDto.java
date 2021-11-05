@@ -8,6 +8,7 @@ import lombok.Data;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 public class CardDto {
     @Data
@@ -30,6 +31,10 @@ public class CardDto {
         private String cardDepartment;
         @NotBlank
         private String cardSkill;
+        @Pattern(regexp = "^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$",
+                message = "3자리 또는 6자리 16진수 형식의 컬러코드만 유효합니다.")
+        @NotBlank
+        private String cardHighlightColor;
     }
 
     @Data
@@ -43,6 +48,7 @@ public class CardDto {
         private String cardDepartment;
         private String cardSkill;
         private String cardType;
+        private String cardHighlightColor;
 
         public static Info createFromEntity(final CardEntity card) {
             return builder()
@@ -53,6 +59,7 @@ public class CardDto {
                     .cardDepartment(card.getCardDepartment())
                     .cardSkill(card.getCardSkill())
                     .cardType(card.getCardType().toString())
+                    .cardHighlightColor(card.getCardHighlightColor())
                     .build();
         }
     }

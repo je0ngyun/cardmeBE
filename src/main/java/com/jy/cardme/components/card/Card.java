@@ -3,6 +3,7 @@ package com.jy.cardme.components.card;
 import com.jy.cardme.entity.CardEntity;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import java.io.IOException;
 
@@ -27,6 +28,7 @@ public abstract class Card {
         card.setCardMotto(cardEntity.getCardMotto());
         card.setCardEmail(cardEntity.getCardEmail());
         card.setCardDepartment(cardEntity.getCardDepartment());
+        card.setCardHighlightColor(cardEntity.getCardHighlightColor());
         return card;
     }
 
@@ -35,27 +37,34 @@ public abstract class Card {
         cardTitle.text(title);
     }
 
-    public void setCardMotto(String motto){
+    public void setCardMotto(String motto) {
         final Element cardMotto = doc.getElementById("card-motto");
         cardMotto.text(motto);
     }
 
-    public void setCardEmail(String email){
+    public void setCardEmail(String email) {
         final Element cardEmail = doc.getElementById("card-email");
         cardEmail.text(email);
     }
 
-    public void setCardDepartment(String department){
+    public void setCardDepartment(String department) {
         final Element cardDepartment = doc.getElementById("card-department");
         cardDepartment.text(department);
     }
 
-    public void setCardSkill(String skill){
+    public void setCardHighlightColor(String highlightColor) {
+        final Elements cardHighlight = doc.getElementsByClass("highlight");
+        for (Element element : cardHighlight) {
+            element.attr("style",String.format("fill:%s",highlightColor));
+        }
+    }
+
+    public void setCardSkill(String skill) {
         final Element cardSkill = doc.getElementById("card-skill");
         // 추후구현
     }
 
-    public String getSvgString(){
-        return doc.body().child(0).toString().replaceAll("viewbox","viewBox");
+    public String getSvgString() {
+        return doc.body().child(0).toString().replaceAll("viewbox", "viewBox");
     }
 }

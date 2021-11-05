@@ -42,4 +42,7 @@ public class CardEntity {
     @Column(nullable = false)
     private String cardSkill;
 
+    @Column(nullable = false)
+    private String cardHighlightColor;
+
 }

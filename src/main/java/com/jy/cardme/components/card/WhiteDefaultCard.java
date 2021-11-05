@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 public class WhiteDefaultCard extends Card {
     WhiteDefaultCard() throws IOException {
-        InputStream in = getClass().getResourceAsStream("/static/testsvg.svg");
+        final InputStream in = getClass().getResourceAsStream("/static/testsvg.svg");
         super.doc = Jsoup.parse(IOUtils.toString(in, "UTF-8"));
     }
 }
