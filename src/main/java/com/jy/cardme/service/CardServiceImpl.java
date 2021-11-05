@@ -50,6 +50,7 @@ public class CardServiceImpl implements CardService {
                 .cardDepartment(cardSignReq.getCardDepartment())
                 .cardSkill(cardSignReq.getCardSkill())
                 .cardType(Enum.valueOf(Card.CardType.class,cardSignReq.getCardType()))
+                .cardHighlightColor(cardSignReq.getCardHighlightColor())
                 .build();
         final CardEntity repoRet = cardRepository.save(card);
         final CardDto.Info cardSignRes = CardDto.Info.createFromEntity(repoRet);
