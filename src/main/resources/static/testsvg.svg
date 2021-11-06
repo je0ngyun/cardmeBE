@@ -1,46 +1,46 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="380" height="220" viewBox="0 0 385 225" fill="none">
     <style>
         .title {
-        font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
-        animation: fadeInAnimation 0.8s ease-in-out forwards;
+            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
         }
         .motto{
-        font: 500 14.5px 'Segoe UI', Ubuntu, Sans-Serif;
-        animation: fadeInAnimation 0.8s ease-in-out forwards;
+            font: 500 14.5px 'Segoe UI', Ubuntu, Sans-Serif;
+            animation: fadeInAnimation 0.8s ease-in-out forwards;
         }
         .info {
-        font: 400 13.5px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #363636;
+            font: 400 13.5px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #363636;
         }
         .stagger {
-        opacity: 0;
-        animation: fadeInAnimation 0.3s ease-in-out forwards;
+            opacity: 0;
+            animation: fadeInAnimation 0.3s ease-in-out forwards;
         }
         .rank-text {
-        font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #363636;
-        animation: scaleInAnimation 0.3s ease-in-out forwards;
+            font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #363636;
+            animation: scaleInAnimation 0.3s ease-in-out forwards;
         }
         .bold {
-        font-weight: 700;
+            font-weight: 700;
         }
         .icon{
-        display: block;
+            display: block;
         }
         /* Animations */
         @keyframes scaleInAnimation {
-        from {
-        transform: translate(-5px, 5px) scale(0);
-        }
-        to {
-        transform: translate(-5px, 5px) scale(1);
-        }
+            from {
+                transform: translate(-5px, 5px) scale(0);
+            }
+            to {
+                transform: translate(-5px, 5px) scale(1);
+            }
         }
         @keyframes fadeInAnimation {
-        from {
-        opacity: 0;
-        }
-        to {
-        opacity: 1;
-        }
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
         }
     </style>
 
