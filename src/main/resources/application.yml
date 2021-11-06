@@ -1,5 +1,3 @@
-# public repo 구성으로 인한 부득이한 민감정보 유출
-# public repo 구성시 추후 Docker 에서 외부주입으로 해결 필요
 server:
   address: 0.0.0.0
   port: 8080
