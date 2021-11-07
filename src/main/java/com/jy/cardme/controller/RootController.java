@@ -17,7 +17,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/cardme/api/v1")
 
 public class RootController {
     private final UserService userService;

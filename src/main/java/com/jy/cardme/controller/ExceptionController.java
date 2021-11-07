@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/exception")
+@RequestMapping("/cardme/api/v1/exception")
 public class ExceptionController {
     @GetMapping("/jwt/wrong-type-token")
     public ResponseEntity wrongTypeToken() {
