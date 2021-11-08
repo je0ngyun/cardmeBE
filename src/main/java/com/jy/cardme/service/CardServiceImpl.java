@@ -48,7 +48,7 @@ public class CardServiceImpl implements CardService {
                 .cardMotto(cardSignReq.getCardMotto())
                 .cardEmail(cardSignReq.getCardEmail())
                 .cardDepartment(cardSignReq.getCardDepartment())
-                .cardSkill(cardSignReq.getCardSkill())
+                .cardSkills(cardSignReq.getCardSkills())
                 .cardType(Enum.valueOf(Card.CardType.class,cardSignReq.getCardType()))
                 .cardHighlightColor(cardSignReq.getCardHighlightColor())
                 .build();

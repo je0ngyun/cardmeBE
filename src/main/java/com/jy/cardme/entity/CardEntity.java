@@ -40,7 +40,7 @@ public class CardEntity {
     private String cardDepartment;
 
     @Column(nullable = false)
-    private String cardSkill;
+    private String cardSkills;
 
     @Column(nullable = false)
     private String cardHighlightColor;
