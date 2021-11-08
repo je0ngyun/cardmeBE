@@ -13,12 +13,12 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class CardEntity {
     @Id
-    @Column(name = "ID")
+    @Column(name = "idx")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "userId", nullable = false)
+    @JoinColumn(name = "userId", referencedColumnName = "userId", nullable = false)
     private UserEntity user;
 
     @Column(nullable = false)

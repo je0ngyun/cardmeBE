@@ -19,6 +19,10 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class UserEntity implements UserDetails {
     @Id
+    @Column(name = "idx")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(nullable = false, unique = true)
     private String userId;
     @Column(nullable = false)
     private String userPw;
