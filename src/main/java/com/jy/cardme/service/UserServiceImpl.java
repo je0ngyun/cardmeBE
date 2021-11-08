@@ -40,25 +40,34 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDto.SignInRes signIn(final UserDto.SignInReq userSignInReq) {
-        final Optional<UserEntity> optional = userRepository.findById(userSignInReq.getUserId());
+        final Optional<UserEntity> optional = userRepository.findByUserId(userSignInReq.getUserId());
         if (!optional.isPresent()) {
             throw new Common404Exception(ResponseMessage.NOT_FOUND_USER);
         }
         final UserEntity user = optional.get();
         UserDto.SignInRes userSignInRes = UserDto.SignInRes.builder()
                 .userId(user.getUserId())
-                .token(authService.issuingToken(userSignInReq,user))
+                .token(authService.issuingToken(userSignInReq, user))
                 .build();
         return userSignInRes;
     }
 
     @Override
     public UserDto.Info getUserInfo(final UserDto.Info userInfo) {
-        final Optional<UserEntity> optional = userRepository.findById(userInfo.getUserId());
+        final Optional<UserEntity> optional = userRepository.findByUserId(userInfo.getUserId());
         if (!optional.isPresent()) {
             throw new Common404Exception(ResponseMessage.NOT_FOUND_USER);
         }
         final UserDto.Info info = UserDto.Info.createFromEntity(optional.get());
         return info;
+    }
+
+    @Override
+    public UserEntity getUserEntity(final String userId) {
+        final Optional<UserEntity> optional = userRepository.findByUserId(userId);
+        if (!optional.isPresent()) {
+            throw new Common404Exception(ResponseMessage.NOT_FOUND_USER);
+        }
+        return optional.get();
     }
 }

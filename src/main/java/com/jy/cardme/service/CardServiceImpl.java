@@ -10,6 +10,7 @@ import com.jy.cardme.exception.Common400Exception;
 import com.jy.cardme.exception.Common404Exception;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -18,40 +19,44 @@ import java.util.Optional;
 public class CardServiceImpl implements CardService {
 
     private final CardRepository cardRepository;
+    private final UserService userService;
 
     @Autowired
-    public CardServiceImpl(CardRepository cardRepository) {
+    public CardServiceImpl(CardRepository cardRepository, UserService userService) {
         this.cardRepository = cardRepository;
+        this.userService = userService;
     }
 
     @Override
     public String generatingCard(CardDto.UseReq cardUseReq) throws IOException {
-        final UserEntity temp = UserEntity.builder(cardUseReq.getUserId()).build();
-        final Optional<CardEntity> optional = cardRepository.findByUserAndCardName(temp,cardUseReq.getCardName());
+        final UserEntity user = userService.getUserEntity(cardUseReq.getUserId());
+        final Optional<CardEntity> optional = cardRepository.findByUserAndCardName(user, cardUseReq.getCardName());
         if (!optional.isPresent()) {
             throw new Common404Exception(ResponseMessage.NOT_FOUND_CARD);
         }
         return Card.CardFactory(optional.get()).getSvgString();
     }
 
+    @Transactional
     @Override
     public CardDto.Info signCard(final CardDto.SignReq cardSignReq) {
-        final UserEntity temp = UserEntity.builder(cardSignReq.getUserId()).build();
-        final Optional<CardEntity> optional = cardRepository.findByUserAndCardName(temp, cardSignReq.getCardName());
+        final UserEntity user = userService.getUserEntity(cardSignReq.getUserId());
+        final Optional<CardEntity> optional = cardRepository.findByUserAndCardName(user, cardSignReq.getCardName());
         if (optional.isPresent()) {
             throw new Common400Exception(ResponseMessage.DUPLICATE_CARD_NAME);
         }
         final CardEntity card = CardEntity.builder()
-                .user(temp)
+                .user(user)
                 .cardName(cardSignReq.getCardName())
                 .cardTitle(cardSignReq.getCardTitle())
                 .cardMotto(cardSignReq.getCardMotto())
                 .cardEmail(cardSignReq.getCardEmail())
                 .cardDepartment(cardSignReq.getCardDepartment())
                 .cardSkills(cardSignReq.getCardSkills())
-                .cardType(Enum.valueOf(Card.CardType.class,cardSignReq.getCardType()))
+                .cardType(Enum.valueOf(Card.CardType.class, cardSignReq.getCardType()))
                 .cardHighlightColor(cardSignReq.getCardHighlightColor())
                 .build();
+        System.out.println(card.toString());
         final CardEntity repoRet = cardRepository.save(card);
         final CardDto.Info cardSignRes = CardDto.Info.createFromEntity(repoRet);
         return cardSignRes;
