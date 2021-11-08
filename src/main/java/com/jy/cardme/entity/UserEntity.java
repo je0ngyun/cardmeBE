@@ -27,7 +27,7 @@ public class UserEntity implements UserDetails {
     @Column(nullable = false)
     private String userEm;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 

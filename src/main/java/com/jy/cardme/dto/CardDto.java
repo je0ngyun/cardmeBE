@@ -30,7 +30,7 @@ public class CardDto {
         @NotBlank
         private String cardDepartment;
         @NotBlank
-        private String cardSkill;
+        private String cardSkills;
         @Pattern(regexp = "^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$",
                 message = "3자리 또는 6자리 16진수 형식의 컬러코드만 유효합니다.")
         @NotBlank
@@ -46,7 +46,7 @@ public class CardDto {
         private String cardMotto;
         private String cardEmail;
         private String cardDepartment;
-        private String cardSkill;
+        private String cardSkills;
         private String cardType;
         private String cardHighlightColor;
 
@@ -57,7 +57,7 @@ public class CardDto {
                     .cardMotto(card.getCardMotto())
                     .cardEmail(card.getCardEmail())
                     .cardDepartment(card.getCardDepartment())
-                    .cardSkill(card.getCardSkill())
+                    .cardSkills(card.getCardSkills())
                     .cardType(card.getCardType().toString())
                     .cardHighlightColor(card.getCardHighlightColor())
                     .build();
