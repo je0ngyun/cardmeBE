@@ -4,6 +4,8 @@ import com.jy.cardme.components.card.Card;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Arrays;
+import java.util.List;
 
 @Entity
 @Table(name = "card")
@@ -45,4 +47,7 @@ public class CardEntity {
     @Column(nullable = false)
     private String cardHighlightColor;
 
+    public List<String> cardSkillsToList(){
+        return Arrays.asList(cardSkills.split(","));
+    }
 }
