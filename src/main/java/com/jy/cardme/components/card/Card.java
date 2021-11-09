@@ -1,11 +1,15 @@
 package com.jy.cardme.components.card;
 
 import com.jy.cardme.entity.CardEntity;
+import org.apache.commons.io.IOUtils;
+import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.List;
 
 public abstract class Card {
 
@@ -29,6 +33,7 @@ public abstract class Card {
         card.setCardEmail(cardEntity.getCardEmail());
         card.setCardDepartment(cardEntity.getCardDepartment());
         card.setCardHighlightColor(cardEntity.getCardHighlightColor());
+        card.setCardSkills(cardEntity.cardSkillsToList());
         return card;
     }
 
@@ -55,13 +60,16 @@ public abstract class Card {
     public void setCardHighlightColor(String highlightColor) {
         final Elements cardHighlight = doc.getElementsByClass("highlight");
         for (Element element : cardHighlight) {
-            element.attr("style",String.format("fill:%s",highlightColor));
+            element.attr("style", String.format("fill:%s", highlightColor));
         }
     }
 
-    public void setCardSkill(String skill) {
-        final Element cardSkill = doc.getElementById("card-skill");
-        // 추후구현
+    public void setCardSkills(List<String> skills) throws IOException {
+        final InputStream in = getClass().getResourceAsStream("/static/CardSkillFragment.svg");
+        Document cardSkillFragment = Jsoup.parse(IOUtils.toString(in, "UTF-8"));
+        final Element infoContainer = doc.getElementById("info-container");
+        final Element cardSkill = cardSkillFragment.body().child(0);
+        infoContainer.appendChild(cardSkill);
     }
 
     public String getSvgString() {
