@@ -8,7 +8,10 @@ import lombok.Data;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class CardDto {
     @Data
@@ -29,12 +32,19 @@ public class CardDto {
         private String cardEmail;
         @NotBlank
         private String cardDepartment;
-        @NotBlank
-        private String cardSkills;
+        @NotNull
+        private List<String> cardSkills;
         @Pattern(regexp = "^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$",
                 message = "3자리 또는 6자리 16진수 형식의 컬러코드만 유효합니다.")
         @NotBlank
         private String cardHighlightColor;
+
+        public String cardSkillsToStr() {
+            return cardSkills
+                    .stream()
+                    .map(s -> String.valueOf(s))
+                    .collect(Collectors.joining(","));
+        }
     }
 
     @Data
@@ -46,7 +56,7 @@ public class CardDto {
         private String cardMotto;
         private String cardEmail;
         private String cardDepartment;
-        private String cardSkills;
+        private List<String> cardSkills;
         private String cardType;
         private String cardHighlightColor;
 
@@ -57,7 +67,7 @@ public class CardDto {
                     .cardMotto(card.getCardMotto())
                     .cardEmail(card.getCardEmail())
                     .cardDepartment(card.getCardDepartment())
-                    .cardSkills(card.getCardSkills())
+                    .cardSkills(card.cardSkillsToList())
                     .cardType(card.getCardType().toString())
                     .cardHighlightColor(card.getCardHighlightColor())
                     .build();
