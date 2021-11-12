@@ -1,5 +1,7 @@
 package com.jy.cardme.dto;
 
+import com.jy.cardme.components.card.Card;
+import com.jy.cardme.components.validation.Enum;
 import com.jy.cardme.entity.CardEntity;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -20,6 +22,9 @@ public class CardDto {
         @NotBlank
         private String userId;
         @NotBlank
+        @Enum(enumClass = Card.CardType.class,
+                ignoreCase = true,
+                message = "존재하지 않는 카드 타입입니다.")
         private String cardType;
         @NotBlank
         private String cardName;
