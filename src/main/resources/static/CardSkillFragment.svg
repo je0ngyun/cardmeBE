@@ -1,6 +1,0 @@
-<g id="skill-pos" transform="translate(0, 75)">
-    <g class="stagger" style="animation-delay: 900ms" transform="translate(25, 0)">
-        <rect id="skill-rect" x="0" y="0" rx="3.5" ry="3.5" height="15" width="27" fill="#b786ce" >asd</rect>
-        <text id="skill-name" class="info card-skill" x="4" y="11.5">Vue</text>
-    </g>
-</g>
