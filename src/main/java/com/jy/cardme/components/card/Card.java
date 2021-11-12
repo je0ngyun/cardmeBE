@@ -16,7 +16,17 @@ public abstract class Card {
     protected Document doc;
 
     public enum CardType {
-        WHITE_DEFAULT
+        WHITE_DEFAULT("WHITE_DEFAULT");
+
+        String value;
+
+        CardType(String value) {
+            this.value = value;
+        }
+
+        public String value() {
+            return value;
+        }
     }
 
     public static Card CardFactory(CardEntity cardEntity) throws IOException {
@@ -64,7 +74,7 @@ public abstract class Card {
         }
     }
 
-    public void setCardSkills(List<String> skills,String highlightColor) {
+    public void setCardSkills(List<String> skills, String highlightColor) {
         final Element infoContainer = doc.getElementById("info-container");
         ArrayList<ArrayList<String>> lineOfSkills = splitSkillsList(skills);
         Element skillFragment = getSkillFragment();
@@ -77,8 +87,8 @@ public abstract class Card {
             for (String skillName : lineOfSkills.get(i)) {
                 skillFragment.attr("transform", String.format("translate(%s,%s)", skillStartXPos, skillStartYPos));
                 skillFragment.getElementById("skill-rect").attr("width", String.format("%s", getSkillRectWidth(skillName)));
-                skillStartXPos += getSkillRectWidth(skillName)+3;
-                skillFragment.getElementById("skill-rect").attr("fill", String.format("%s",highlightColor));
+                skillStartXPos += getSkillRectWidth(skillName) + 3;
+                skillFragment.getElementById("skill-rect").attr("fill", String.format("%s", highlightColor));
                 skillFragment.getElementById("skill-name").text(skillName);
                 infoContainer.append(skillFragment.toString());
             }

@@ -56,7 +56,6 @@ public class CardServiceImpl implements CardService {
                 .cardType(Enum.valueOf(Card.CardType.class, cardSignReq.getCardType()))
                 .cardHighlightColor(cardSignReq.getCardHighlightColor())
                 .build();
-        System.out.println(card.toString());
         final CardEntity repoRet = cardRepository.save(card);
         final CardDto.Info cardSignRes = CardDto.Info.createFromEntity(repoRet);
         return cardSignRes;
