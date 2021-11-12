@@ -1,15 +1,15 @@
 package com.jy.cardme.components.card;
 
 import com.jy.cardme.entity.CardEntity;
-import org.apache.commons.io.IOUtils;
-import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import java.io.IOException;
-import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 public abstract class Card {
 
@@ -33,7 +33,7 @@ public abstract class Card {
         card.setCardEmail(cardEntity.getCardEmail());
         card.setCardDepartment(cardEntity.getCardDepartment());
         card.setCardHighlightColor(cardEntity.getCardHighlightColor());
-        card.setCardSkills(cardEntity.cardSkillsToList());
+        card.setCardSkills(cardEntity.cardSkillsToList(), cardEntity.getCardHighlightColor());
         return card;
     }
 
@@ -64,12 +64,89 @@ public abstract class Card {
         }
     }
 
-    public void setCardSkills(List<String> skills) throws IOException {
-        final InputStream in = getClass().getResourceAsStream("/static/CardSkillFragment.svg");
-        Document cardSkillFragment = Jsoup.parse(IOUtils.toString(in, "UTF-8"));
+    public void setCardSkills(List<String> skills,String highlightColor) {
         final Element infoContainer = doc.getElementById("info-container");
-        final Element cardSkill = cardSkillFragment.body().child(0);
-        infoContainer.appendChild(cardSkill);
+        ArrayList<ArrayList<String>> lineOfSkills = splitSkillsList(skills);
+        Element skillFragment = getSkillFragment();
+        int maximumSkillsLines = getMaximumSkillsLine();
+        float skillStartYPos = getSkillStartYPos();
+        float skillStartXPos = 0;
+        float yPosIncrease = getYPosIncrease();
+
+        for (int i = 0; i < maximumSkillsLines; i++) {
+            for (String skillName : lineOfSkills.get(i)) {
+                skillFragment.attr("transform", String.format("translate(%s,%s)", skillStartXPos, skillStartYPos));
+                skillFragment.getElementById("skill-rect").attr("width", String.format("%s", getSkillRectWidth(skillName)));
+                skillStartXPos += getSkillRectWidth(skillName)+3;
+                skillFragment.getElementById("skill-rect").attr("fill", String.format("%s",highlightColor));
+                skillFragment.getElementById("skill-name").text(skillName);
+                infoContainer.append(skillFragment.toString());
+            }
+            skillStartYPos += yPosIncrease;
+            skillStartXPos = 0;
+        }
+    }
+
+    public int getNumberOfLettersAllowed() {
+        final Element main = doc.getElementById("main");
+        int mainWidth = Integer.parseInt(main.attr("width"));
+        return 33 * mainWidth / 380;
+    }
+
+    public float getSkillStartYPos() {
+        Element helperNode = doc.getElementById("skill-pos-helper");
+        String transform = helperNode.attr("transform");
+        float y = Integer.parseInt(transform.substring(transform.length() - 3, transform.length() - 1));
+        return y;
+    }
+
+    public float getSkillRectWidth(String skillName) {
+        return skillName.length() * 6 + 17;
+    }
+
+    public int getMaximumSkillsLine() {
+        Element posHelper = doc.getElementById("skill-pos-helper");
+        String data = posHelper.attr("class");
+        return Integer.parseInt(data.split(",")[0]);
+    }
+
+    public float getYPosIncrease() {
+        Element posHelper = doc.getElementById("skill-pos-helper");
+        String data = posHelper.attr("class");
+        return Float.parseFloat(data.split(",")[1]);
+    }
+
+    public Element getSkillFragment() {
+        Element skillFragment = doc.getElementById("skill-pos-helper").child(0);
+        doc.getElementById("skill-pos-helper").child(0).remove();
+        return skillFragment;
+    }
+
+    public ArrayList<ArrayList<String>> splitSkillsList(List<String> skills) {
+        Stack<String> skillsStack = new Stack<>();
+        Collections.reverse(skills);
+        skillsStack.addAll(skills);
+
+        int numberOfLettersAllowed = getNumberOfLettersAllowed();
+        int currentLetters = 0;
+        ArrayList<ArrayList<String>> lineOfSkillsList = new ArrayList<>();
+
+        while (!skillsStack.isEmpty()) {
+            ArrayList<String> lineOfSkill = new ArrayList<>();
+            while (!skillsStack.isEmpty()) {
+                String skill = skillsStack.pop();
+                currentLetters += skill.length();
+                if (currentLetters > numberOfLettersAllowed) {
+                    skillsStack.push(skill);
+                    break;
+                }
+                lineOfSkill.add(skill);
+            }
+            currentLetters = 0;
+            lineOfSkillsList.add(new ArrayList<>(lineOfSkill));
+            lineOfSkill.clear();
+        }
+        return lineOfSkillsList;
     }
 
     public String getSvgString() {

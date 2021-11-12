@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="380" height="220" viewBox="0 0 385 225" fill="none">
+<svg id="main" xmlns="http://www.w3.org/2000/svg" width="380" height="220" viewBox="0 0 385 225" fill="none">
     <style>
         @font-face {
             font-family: 'D2 coding';
@@ -37,7 +37,7 @@
         .icon{
             display: block;
         }
-        .card-skill{
+        .card-skill-text{
             font: 400 12.5px 'D2 coding';
             fill: #ffffff;
         }
@@ -107,6 +107,16 @@
                     <text class="info" id="card-skills" x="25" y="12.5">Skills</text>
                 </g>
             </g>
+
+            <g id="skill-pos-helper" transform="translate(0, 75)" class="2,22">
+                <g transform="">
+                    <g class="stagger" style="animation-delay: 900ms" transform="translate(25, 0)">
+                        <rect id="skill-rect" x="0" y="0" rx="3.5" ry="3.5" height="15" width="" fill="" />
+                        <text id="skill-name" class="info card-skill-text" x="4" y="11.5"></text>
+                    </g>
+                </g>
+            </g>
+            
         </svg>
     </g>
 </svg>
