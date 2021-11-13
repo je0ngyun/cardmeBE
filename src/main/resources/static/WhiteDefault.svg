@@ -21,7 +21,7 @@
             animation: fadeInAnimation 0.8s ease-in-out forwards;
         }
         .info {
-            font: 400 13.5px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #363636;
+            font: 500 13.5px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #363636;
         }
         .stagger {
             opacity: 0;
@@ -38,7 +38,7 @@
             display: block;
         }
         .card-skill-text{
-            font: 400 12.5px 'D2 coding';
+            font: 400 12.5px 'D2 coding', 'Segoe UI', Ubuntu, Sans-Serif;
             fill: #ffffff;
         }
         /* Animations */
@@ -60,7 +60,9 @@
         }
     </style>
 
-    <rect x="0.7" y="1" rx="4.5" ry="4.5" height="99%" stroke="#e4e2e2" width="380" fill="#ffffff" stroke-opacity="1"/>
+    <a href="https://github.com/je0ngyun/cardmeBE">
+        <rect x="0.7" y="1" rx="4.5" ry="4.5" height="99%" stroke="#e4e2e2" width="380" fill="#ffffff" stroke-opacity="1"/>
+    </a>
 
     <g transform="translate(25, 35)">
         <g transform="translate(0, 0)">
