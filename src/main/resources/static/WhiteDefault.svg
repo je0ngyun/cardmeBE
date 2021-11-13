@@ -1,62 +1,51 @@
 <svg id="main" xmlns="http://www.w3.org/2000/svg" width="380" height="220" viewBox="0 0 385 225" fill="none">
     <style>
-        @font-face {
-            font-family: 'D2 coding';
-            font-style: normal;
-            font-weight: 400;
-            src: url('D2Coding.eot');
-            src: local('※'), local('D2Coding'),
-            url('D2Coding.eot?#iefix') format('embedded-opentype'),
-            url('D2Coding.woff2') format('x-woff2'),
-            url('D2Coding.woff') format('woff'),
-            url('D2Coding.ttf') format('truetype'),
-            url('D2Coding.svg') format('svg');
-        }
+        @import url("//cdn.jsdelivr.net/gh/wan2land/d2coding/d2coding-full.css");
         .title {
-            font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
-            animation: fadeInAnimation 0.8s ease-in-out forwards;
+        font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+        animation: fadeInAnimation 0.8s ease-in-out forwards;
         }
         .motto{
-            font: 500 14.5px 'Segoe UI', Ubuntu, Sans-Serif;
-            animation: fadeInAnimation 0.8s ease-in-out forwards;
+        font: 500 14.5px 'Segoe UI', Ubuntu, Sans-Serif;
+        animation: fadeInAnimation 0.8s ease-in-out forwards;
         }
         .info {
-            font: 500 13.5px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #363636;
+        font: 500 13.5px 'Segoe UI', Ubuntu, "Helvetica Neue", Sans-Serif; fill: #363636;
         }
         .stagger {
-            opacity: 0;
-            animation: fadeInAnimation 0.3s ease-in-out forwards;
+        opacity: 0;
+        animation: fadeInAnimation 0.3s ease-in-out forwards;
         }
         .rank-text {
-            font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #363636;
-            animation: scaleInAnimation 0.3s ease-in-out forwards;
+        font: 800 24px 'Segoe UI', Ubuntu, Sans-Serif; fill: #363636;
+        animation: scaleInAnimation 0.3s ease-in-out forwards;
         }
         .bold {
-            font-weight: 700;
+        font-weight: 700;
         }
         .icon{
-            display: block;
+        display: block;
         }
         .card-skill-text{
-            font: 400 12.5px 'D2 coding', 'Segoe UI', Ubuntu, Sans-Serif;
-            fill: #ffffff;
+        font: 400 12.5px 'D2Coding', monospace;;
+        fill: #ffffff;
         }
         /* Animations */
         @keyframes scaleInAnimation {
-            from {
-                transform: translate(-5px, 5px) scale(0);
-            }
-            to {
-                transform: translate(-5px, 5px) scale(1);
-            }
+        from {
+        transform: translate(-5px, 5px) scale(0);
+        }
+        to {
+        transform: translate(-5px, 5px) scale(1);
+        }
         }
         @keyframes fadeInAnimation {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
+        from {
+        opacity: 0;
+        }
+        to {
+        opacity: 1;
+        }
         }
     </style>
 
@@ -118,7 +107,7 @@
                     </g>
                 </g>
             </g>
-            
+
         </svg>
     </g>
 </svg>
