@@ -1,6 +1,5 @@
 <svg id="main" xmlns="http://www.w3.org/2000/svg" width="380" height="220" viewBox="0 0 385 225" fill="none">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@400;500&amp;family=Roboto+Mono:wght@400;500&amp;display=swap');
         .title {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
             animation: fadeInAnimation 0.8s ease-in-out forwards;
@@ -27,7 +26,7 @@
             display: block;
         }
         .card-skill-text{
-            font: 400 12.5px 'Roboto Mono', monospace;
+            font: 400 12.5px 'Roboto Mono';
             fill: #ffffff;
         }
         /* Animations */
@@ -48,6 +47,12 @@
             }
         }
     </style>
+
+    <defs>
+        <style type="text/css">
+            @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400');
+        </style>
+    </defs>
 
     <a href="https://github.com/je0ngyun/cardmeBE">
         <rect x="0.7" y="1" rx="4.5" ry="4.5" height="99%" stroke="#e4e2e2" width="380" fill="#ffffff" stroke-opacity="1"/>
