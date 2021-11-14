@@ -17,18 +17,18 @@
 
 Jenkins를 통하여 Docker Image 기반으로 CI/CD 파이프라인을 구축해놓았습니다.
 테스트 서버로의 API요청 주소는 다음과 같습니다.  
-[**https://www.je0ngyun.kro.kr/cardme/api/v1/card?userId=je0ngyun&cardName=test**](https://www.je0ngyun.kro.kr/cardme/api/v1/card?userId=je0ngyun&cardName=test)
+[**https://www.je0ngyun.kro.kr/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1**](https://www.je0ngyun.kro.kr/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1)
 
 ```html
 //e.g
 <img
-  src="https://www.je0ngyun.kro.kr/cardme/api/v1/card?userId=je0ngyun&cardName=test"
+  src="https://www.je0ngyun.kro.kr/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1"
 />
 ```
 
 ### 제공된 Svg 예시
 
-<img src="https://www.je0ngyun.kro.kr/cardme/api/v1/card?userId=je0ngyun&cardName=test"/>
+<img src="https://www.je0ngyun.kro.kr/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1"/>
 
 ## Ing.
 
