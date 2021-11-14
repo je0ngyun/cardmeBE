@@ -1,6 +1,6 @@
 <svg id="main" xmlns="http://www.w3.org/2000/svg" width="380" height="220" viewBox="0 0 385 225" fill="none">
     <style>
-        @import url("//cdn.jsdelivr.net/gh/wan2land/d2coding/d2coding-full.css");
+        @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@400;500&amp;family=Roboto+Mono:wght@400;500&amp;display=swap');
         .title {
             font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
             animation: fadeInAnimation 0.8s ease-in-out forwards;
@@ -27,7 +27,7 @@
             display: block;
         }
         .card-skill-text{
-            font: 400 12.5px 'D2Coding', monospace;;
+            font: 400 12.5px 'Roboto Mono', monospace;
             fill: #ffffff;
         }
         /* Animations */
