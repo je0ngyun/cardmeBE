@@ -26,7 +26,7 @@
             display: block;
         }
         .card-skill-text{
-            font: 400 12.5px 'Roboto';
+            font: 400 12.5px 'Roboto Mono';
             fill: #ffffff;
         }
         /* Animations */
@@ -50,7 +50,12 @@
 
     <defs>
         <style type="text/css">
-            @import url('https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic;');
+            @font-face {
+                font-family: 'Roboto Mono';
+                font-style: normal;
+                font-weight: 400;
+                src: url(https://fonts.gstatic.com/s/robotomono/v13/L0xuDF4xlVMF-BfR8bXMIhJHg45mwgGEFl0_3vq_SeW-AJi8SJQtQ4Y.woff) format('woff');
+            }
         </style>
     </defs>
 
