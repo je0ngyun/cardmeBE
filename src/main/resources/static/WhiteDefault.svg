@@ -27,7 +27,7 @@
             display: block;
         }
         .card-skill-text{
-            font: 400 12.5px 'Roboto Mono', monospace;;
+            font: 400 12.5px 'Roboto Mono', monospace;
             fill: #ffffff;
         }
         /* Animations */
