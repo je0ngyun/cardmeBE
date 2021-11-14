@@ -100,7 +100,7 @@ public abstract class Card {
     public int getNumberOfLettersAllowed() {
         final Element main = doc.getElementById("main");
         int mainWidth = Integer.parseInt(main.attr("width"));
-        return 33 * mainWidth / 380;
+        return 31 * mainWidth / 380;
     }
 
     public float getSkillStartYPos() {
@@ -111,7 +111,7 @@ public abstract class Card {
     }
 
     public float getSkillRectWidth(String skillName) {
-        return skillName.length() * 6 + 17;
+        return (float) (skillName.length() * 7.5 + 14);
     }
 
     public int getMaximumSkillsLine() {
