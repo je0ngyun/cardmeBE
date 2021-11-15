@@ -111,7 +111,7 @@ public abstract class Card {
     }
 
     public float getSkillRectWidth(String skillName) {
-        return (float) (skillName.length() * 7.5 + 14);
+        return (float) (skillName.length() * 7.5 + 12);
     }
 
     public int getMaximumSkillsLine() {
