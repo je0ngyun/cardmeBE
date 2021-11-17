@@ -1,6 +1,7 @@
 package com.jy.cardme.dto;
 
 import com.jy.cardme.components.card.Card;
+import com.jy.cardme.components.validation.DuplicateCheck;
 import com.jy.cardme.components.validation.Enum;
 import com.jy.cardme.entity.CardEntity;
 import lombok.AccessLevel;
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class CardDto {
     @Data
     @AllArgsConstructor
+    @DuplicateCheck(propertyNames={"userId","cardName"},message = "해당 아이디의 중복된 카드가 존재합니다.")
     public static class SignReq {
         @NotBlank
         private String userId;
