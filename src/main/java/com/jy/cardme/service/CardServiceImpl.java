@@ -6,7 +6,6 @@ import com.jy.cardme.dao.CardRepository;
 import com.jy.cardme.dto.CardDto;
 import com.jy.cardme.entity.CardEntity;
 import com.jy.cardme.entity.UserEntity;
-import com.jy.cardme.exception.Common400Exception;
 import com.jy.cardme.exception.Common404Exception;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,10 +40,6 @@ public class CardServiceImpl implements CardService {
     @Override
     public CardDto.Info signCard(final CardDto.SignReq cardSignReq) {
         final UserEntity user = userService.getUserEntity(cardSignReq.getUserId());
-        final Optional<CardEntity> optional = cardRepository.findByUserAndCardName(user, cardSignReq.getCardName());
-        if (optional.isPresent()) {
-            throw new Common400Exception(ResponseMessage.DUPLICATE_CARD_NAME);
-        }
         final CardEntity card = CardEntity.builder()
                 .user(user)
                 .cardName(cardSignReq.getCardName())
