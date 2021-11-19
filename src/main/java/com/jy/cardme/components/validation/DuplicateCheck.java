@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 
 @Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = DuplicateCheckValidator.class)
+@Constraint(validatedBy = {DuplicateUserIdValidator.class, DuplicateCardNameValidator.class})
 public @interface DuplicateCheck {
     String message() default "중복된 값이 존재합니다.";
 

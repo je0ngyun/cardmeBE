@@ -1,17 +1,16 @@
 package com.jy.cardme.components.validation;
 
 import com.jy.cardme.dao.CardRepository;
+import com.jy.cardme.dto.CardDto;
 import com.jy.cardme.entity.CardEntity;
 import com.jy.cardme.entity.UserEntity;
-import com.jy.cardme.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.lang.reflect.Field;
 import java.util.Optional;
 
-public class DuplicateCheckValidator implements ConstraintValidator<DuplicateCheck, Object> {
+public class DuplicateCardNameValidator implements ConstraintValidator<DuplicateCheck, CardDto.SignReq> {
 
     private String message;
     private String[] propertyNames;
@@ -19,7 +18,7 @@ public class DuplicateCheckValidator implements ConstraintValidator<DuplicateChe
     private final CardRepository cardRepository;
 
     @Autowired
-    public DuplicateCheckValidator(CardRepository cardRepository, UserService userService) {
+    public DuplicateCardNameValidator(CardRepository cardRepository) {
         this.cardRepository = cardRepository;
     }
 
@@ -30,10 +29,10 @@ public class DuplicateCheckValidator implements ConstraintValidator<DuplicateChe
     }
 
     @Override
-    public boolean isValid(Object value, ConstraintValidatorContext context) {
+    public boolean isValid(CardDto.SignReq value, ConstraintValidatorContext context) {
         try {
-            String userId = (String) getFieldValue(value, propertyNames[0]);
-            String cardName = (String) getFieldValue(value,propertyNames[1]);
+            String userId = value.getUserId();
+            String cardName = value.getCardName();
             final UserEntity temp = UserEntity.builder(userId).id(new Long(-1)).build();
             final Optional<CardEntity> optional = cardRepository.findByUserAndCardName(temp, cardName);
             if (optional.isPresent()) {
@@ -48,12 +47,5 @@ public class DuplicateCheckValidator implements ConstraintValidator<DuplicateChe
             ex.printStackTrace();
         }
         return false;
-    }
-
-    private Object getFieldValue(Object object, String fieldName) throws Exception {
-        Class<?> clazz = object.getClass();  //
-        Field dateField = clazz.getDeclaredField(fieldName);
-        dateField.setAccessible(true);
-        return dateField.get(object);
     }
 }

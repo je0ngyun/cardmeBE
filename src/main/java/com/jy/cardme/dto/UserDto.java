@@ -1,8 +1,13 @@
 package com.jy.cardme.dto;
 
+import com.jy.cardme.components.validation.DuplicateCheck;
 import com.jy.cardme.entity.UserEntity;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
@@ -26,7 +31,9 @@ public class UserDto {
 
     @Data
     @AllArgsConstructor
+    @DuplicateCheck(propertyNames={"userId"},message = "해당 아이디로 가입된 사용자가 존재합니다.")
     public static class SignUpReq {
+        @Valid
         @NotBlank
         private String userId;
         @NotBlank

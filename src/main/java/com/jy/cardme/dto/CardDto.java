@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -22,6 +23,7 @@ public class CardDto {
     @DuplicateCheck(propertyNames={"userId","cardName"},message = "해당 아이디의 중복된 카드가 존재합니다.")
     public static class SignReq {
         @NotBlank
+        @Valid
         private String userId;
         @NotBlank
         @Enum(enumClass = Card.CardType.class,
@@ -29,6 +31,7 @@ public class CardDto {
                 message = "존재하지 않는 카드 타입입니다.")
         private String cardType;
         @NotBlank
+        @Valid
         private String cardName;
         @NotBlank
         private String cardTitle;
