@@ -32,14 +32,23 @@ public class CardController {
         return new ResponseEntity<>(cardSvg, headers, HttpStatus.OK);
     }
 
-    @PostMapping("/sign")
-    public ResponseEntity signCard(@RequestBody @Valid final CardDto.SignReq cardSignReq) {
-        final CardDto.Info data = cardService.signCard(cardSignReq);
+    @PostMapping("")
+    public ResponseEntity signCard(@RequestBody @Valid final CardDto.CreateReq cardCreateReq) {
+        final CardDto.Info data = cardService.createCard(cardCreateReq);
         final DefaultRes res = DefaultRes.builder()
                 .message(ResponseMessage.SIGN_CARD_SUCCESS)
                 .httpStatus(StatusCode.CREATED)
                 .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
                 .data(data).build();
         return new ResponseEntity(res, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/preview")
+    public ResponseEntity previewCard(@RequestBody @Valid final CardDto.PreviewReq cardPreviewReq) throws IOException {
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.valueOf("image/svg+xml"));
+        headers.setCacheControl(CacheControl.noCache());
+        final String cardSvg = cardService.previewCard(cardPreviewReq);
+        return new ResponseEntity<>(cardSvg, headers, HttpStatus.OK);
     }
 }

@@ -36,20 +36,35 @@ public class CardServiceImpl implements CardService {
         return Card.CardFactory(optional.get()).getSvgString();
     }
 
+    @Override
+    public String previewCard(CardDto.PreviewReq cardPreviewReq) throws IOException {
+        final CardEntity card = CardEntity.builder()
+                .cardTitle(cardPreviewReq.getCardTitle())
+                .cardMotto(cardPreviewReq.getCardMotto())
+                .cardEmail(cardPreviewReq.getCardEmail())
+                .cardDepartment(cardPreviewReq.getCardDepartment())
+                .cardSkills(cardPreviewReq.cardSkillsToStr())
+                .cardType(Enum.valueOf(Card.CardType.class, cardPreviewReq.getCardType()))
+                .cardHighlightColor(cardPreviewReq.getCardHighlightColor())
+                .build();
+        return Card.CardFactory(card).getSvgString();
+    }
+
+
     @Transactional
     @Override
-    public CardDto.Info signCard(final CardDto.SignReq cardSignReq) {
-        final UserEntity user = userService.getUserEntity(cardSignReq.getUserId());
+    public CardDto.Info createCard(final CardDto.CreateReq cardCreateReq) {
+        final UserEntity user = userService.getUserEntity(cardCreateReq.getUserId());
         final CardEntity card = CardEntity.builder()
                 .user(user)
-                .cardName(cardSignReq.getCardName())
-                .cardTitle(cardSignReq.getCardTitle())
-                .cardMotto(cardSignReq.getCardMotto())
-                .cardEmail(cardSignReq.getCardEmail())
-                .cardDepartment(cardSignReq.getCardDepartment())
-                .cardSkills(cardSignReq.cardSkillsToStr())
-                .cardType(Enum.valueOf(Card.CardType.class, cardSignReq.getCardType()))
-                .cardHighlightColor(cardSignReq.getCardHighlightColor())
+                .cardName(cardCreateReq.getCardName())
+                .cardTitle(cardCreateReq.getCardTitle())
+                .cardMotto(cardCreateReq.getCardMotto())
+                .cardEmail(cardCreateReq.getCardEmail())
+                .cardDepartment(cardCreateReq.getCardDepartment())
+                .cardSkills(cardCreateReq.cardSkillsToStr())
+                .cardType(Enum.valueOf(Card.CardType.class, cardCreateReq.getCardType()))
+                .cardHighlightColor(cardCreateReq.getCardHighlightColor())
                 .build();
         final CardEntity repoRet = cardRepository.save(card);
         final CardDto.Info cardSignRes = CardDto.Info.createFromEntity(repoRet);

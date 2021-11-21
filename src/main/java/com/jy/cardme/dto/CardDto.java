@@ -24,7 +24,7 @@ public class CardDto {
     @AllArgsConstructor
     @DuplicateCheck(propertyNames={"userId","cardName"},message = ResponseMessage.DUPLICATE_CARD_NAME)
     @ExistCheck(propertyNames = {"userId"},message = ResponseMessage.NOT_FOUND_USER)
-    public static class SignReq {
+    public static class CreateReq {
         @NotBlank
         @Valid
         private String userId;
@@ -36,6 +36,38 @@ public class CardDto {
         @NotBlank
         @Valid
         private String cardName;
+        @NotBlank
+        private String cardTitle;
+        @NotBlank
+        private String cardMotto;
+        @Email
+        @NotBlank
+        private String cardEmail;
+        @NotBlank
+        private String cardDepartment;
+        @NotNull
+        private List<String> cardSkills;
+        @Pattern(regexp = "^#(([0-9a-fA-F]{2}){3}|([0-9a-fA-F]){3})$",
+                message = ResponseMessage.NOT_VALID_COLOR_CODE)
+        @NotBlank
+        private String cardHighlightColor;
+
+        public String cardSkillsToStr() {
+            return cardSkills
+                    .stream()
+                    .map(s -> String.valueOf(s))
+                    .collect(Collectors.joining(","));
+        }
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class PreviewReq{
+        @NotBlank
+        @Enum(enumClass = Card.CardType.class,
+                ignoreCase = true,
+                message = ResponseMessage.NOT_FOUND_CARD_TYPE)
+        private String cardType;
         @NotBlank
         private String cardTitle;
         @NotBlank

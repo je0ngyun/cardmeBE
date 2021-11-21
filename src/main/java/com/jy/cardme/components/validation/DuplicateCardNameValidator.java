@@ -10,7 +10,7 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 import java.util.Optional;
 
-public class DuplicateCardNameValidator implements ConstraintValidator<DuplicateCheck, CardDto.SignReq> {
+public class DuplicateCardNameValidator implements ConstraintValidator<DuplicateCheck, CardDto.CreateReq> {
 
     private String message;
     private String[] propertyNames;
@@ -29,7 +29,7 @@ public class DuplicateCardNameValidator implements ConstraintValidator<Duplicate
     }
 
     @Override
-    public boolean isValid(CardDto.SignReq value, ConstraintValidatorContext context) {
+    public boolean isValid(CardDto.CreateReq value, ConstraintValidatorContext context) {
         try {
             String userId = value.getUserId();
             String cardName = value.getCardName();

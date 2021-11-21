@@ -11,5 +11,7 @@ public interface CardService {
      */
     String generatingCard(CardDto.UseReq cardUseReq) throws IOException;
 
-    CardDto.Info signCard(CardDto.SignReq cardSignReq);
+    String previewCard(CardDto.PreviewReq cardPreviewReq) throws IOException;
+
+    CardDto.Info createCard(CardDto.CreateReq cardCreateReq);
 }
