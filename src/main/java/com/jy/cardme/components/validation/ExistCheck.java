@@ -9,17 +9,15 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-@Constraint(validatedBy = {EnumValidator.class})
-@Target({ElementType.METHOD, ElementType.FIELD, ElementType.PARAMETER})
+@Target({ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface Enum {
-    String message() default ResponseMessage.BAD_REQUEST;
+@Constraint(validatedBy = {ExistUserValidator.class})
+public @interface ExistCheck {
+    String message() default ResponseMessage.NOT_FOUND;
 
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
 
-    Class<? extends java.lang.Enum<?>> enumClass();
-
-    boolean ignoreCase() default false;
+    String[] propertyNames();
 }
