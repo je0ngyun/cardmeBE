@@ -27,7 +27,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public String generatingCard(CardDto.UseReq cardUseReq) throws IOException {
+    public String useCard(final CardDto.UseReq cardUseReq) throws IOException {
         final UserEntity user = userService.getUserEntity(cardUseReq.getUserId());
         final Optional<CardEntity> optional = cardRepository.findByUserAndCardName(user, cardUseReq.getCardName());
         if (!optional.isPresent()) {
@@ -37,7 +37,7 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public String previewCard(CardDto.PreviewReq cardPreviewReq) throws IOException {
+    public String previewCard(final CardDto.PreviewReq cardPreviewReq) throws IOException {
         final CardEntity card = CardEntity.builder()
                 .cardTitle(cardPreviewReq.getCardTitle())
                 .cardMotto(cardPreviewReq.getCardMotto())
@@ -68,6 +68,18 @@ public class CardServiceImpl implements CardService {
                 .build();
         final CardEntity repoRet = cardRepository.save(card);
         final CardDto.Info cardSignRes = CardDto.Info.createFromEntity(repoRet);
+        return cardSignRes;
+    }
+
+    @Override
+    public CardDto.Info deleteCard(final CardDto.DeleteReq cardDeleteReq) {
+        final UserEntity user = userService.getUserEntity(cardDeleteReq.getUserId());
+        final Optional<CardEntity> optional = cardRepository.findByUserAndCardName(user, cardDeleteReq.getCardName());
+        if (!optional.isPresent()) {
+            throw new Common404Exception(ResponseMessage.NOT_FOUND_CARD);
+        }
+        final CardDto.Info cardSignRes = CardDto.Info.createFromEntity(optional.get());
+        cardRepository.delete(optional.get());
         return cardSignRes;
     }
 }

@@ -127,4 +127,13 @@ public class CardDto {
         @NotBlank
         private String cardName;
     }
+
+    @Data
+    @AllArgsConstructor
+    public static class DeleteReq{
+        @NotBlank
+        private String userId;
+        @NotBlank
+        private String cardName;
+    }
 }

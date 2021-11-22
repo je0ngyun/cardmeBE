@@ -20,6 +20,7 @@ public class ResponseMessage {
     public static final String NOT_FOUND_TOKEN_HEADER = "요청 헤더에 X-AUTH-TOKEN 필드가 없습니다.";
     public static final String NOT_AUTHORIZATION = "해당 요청에 권한이 없는 사용자입니다";
     public static final String SIGN_CARD_SUCCESS = "카드 생성 성공";
+    public static final String DELETE_CARD_SUCCESS = "카드 삭제 성공";
     public static final String NOT_FOUND_CARD = "해당 정보의 카드를 찾을 수 없습니다";
     public static final String DUPLICATE_CARD_NAME = "중복된 이름의 카드가 존재합니다.";
     public static final String NOT_FOUND_CARD_TYPE = "존재하지 않는 카드 타입입니다.";
