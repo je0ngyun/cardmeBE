@@ -1,5 +1,6 @@
 package com.jy.cardme.dto;
 
+import com.jy.cardme.components.commons.ResponseMessage;
 import com.jy.cardme.components.validation.DuplicateCheck;
 import com.jy.cardme.entity.UserEntity;
 import lombok.AccessLevel;
@@ -31,7 +32,7 @@ public class UserDto {
 
     @Data
     @AllArgsConstructor
-    @DuplicateCheck(propertyNames={"userId"},message = "해당 아이디로 가입된 사용자가 존재합니다.")
+    @DuplicateCheck(propertyNames={"userId"},message = ResponseMessage.DUPLICATE_CARD_NAME)
     public static class SignUpReq {
         @Valid
         @NotBlank
@@ -43,6 +44,15 @@ public class UserDto {
         @Email
         @NotBlank
         private String userEm;
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class WithdrawalReq {
+        @NotBlank
+        private String userId;
+        @NotBlank
+        private String userPw;
     }
 
     @Data
@@ -61,4 +71,5 @@ public class UserDto {
                     .build();
         }
     }
+
 }

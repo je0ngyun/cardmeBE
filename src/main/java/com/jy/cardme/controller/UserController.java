@@ -7,11 +7,9 @@ import com.jy.cardme.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
@@ -35,5 +33,16 @@ public class UserController {
                 .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
                 .data(data).build();
         return new ResponseEntity(res, HttpStatus.OK);
+    }
+
+    @DeleteMapping("")
+    public ResponseEntity withdrawal(@ModelAttribute @Valid final UserDto.WithdrawalReq userWithdrawalReq){
+        final UserDto.Info data = userService.withdrawal(userWithdrawalReq);
+        final DefaultRes res = DefaultRes.builder()
+                .message(ResponseMessage.DELETE_USER)
+                .httpStatus(StatusCode.OK)
+                .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
+                .data(data).build();
+        return new ResponseEntity(res,HttpStatus.OK);
     }
 }

@@ -8,7 +8,7 @@ public class ResponseMessage {
     public static final String CREATED_USER = "회원 가입 성공";
     public static final String UPDATE_USER = "회원 정보 수정 성공";
     public static final String DELETE_USER = "회원 탈퇴 성공";
-    public static final String INTERNAL_SERVER_ERROR = "서버 내부 에러";
+    public static final String DUPLICATE_USER_ID = "중복된 아이디의 사용자가 존재합니다.";
     public static final String BAD_REQUEST = "잘못된 요청";
     public static final String NOT_FOUND = "존재하지 않는 정보.";
     public static final String ARGUMENT_NOT_VALID = "잘못된 매서드 매개변수";

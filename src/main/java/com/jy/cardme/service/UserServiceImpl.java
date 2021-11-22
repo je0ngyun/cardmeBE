@@ -70,4 +70,18 @@ public class UserServiceImpl implements UserService {
         }
         return optional.get();
     }
+
+    @Override
+    public UserDto.Info withdrawal(UserDto.WithdrawalReq userWithdrawalReq) {
+        final Optional<UserEntity> optional = userRepository.findByUserId(userWithdrawalReq.getUserId());
+        if (!optional.isPresent()) {
+            throw new Common404Exception(ResponseMessage.NOT_FOUND_USER);
+        }
+        final UserEntity user = optional.get();
+        final UserDto.Info userInfo = UserDto.Info.createFromEntity(user);
+        if (authService.issuingToken(userWithdrawalReq, user)) {
+            userRepository.delete(user);
+        }
+        return userInfo;
+    }
 }
