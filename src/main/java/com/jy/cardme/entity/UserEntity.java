@@ -1,6 +1,7 @@
 package com.jy.cardme.entity;
 
 import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @Builder(builderMethodName = "userEntityBuilder")
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor
+@DynamicUpdate
 public class UserEntity implements UserDetails {
     @Id
     @Column(name = "idx")

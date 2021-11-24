@@ -32,7 +32,7 @@ public class UserDto {
 
     @Data
     @AllArgsConstructor
-    @DuplicateCheck(propertyNames={"userId"},message = ResponseMessage.DUPLICATE_CARD_NAME)
+    @DuplicateCheck(propertyNames={"userId"},message = ResponseMessage.DUPLICATE_USER_ID)
     public static class SignUpReq {
         @Valid
         @NotBlank
@@ -41,6 +41,18 @@ public class UserDto {
         private String userNm;
         @NotBlank
         private String userPw;
+        @Email
+        @NotBlank
+        private String userEm;
+    }
+
+    @Data
+    @AllArgsConstructor
+    public static class UpdateReq{
+        @NotBlank
+        private String userId;
+        @NotBlank
+        private String userNm;
         @Email
         @NotBlank
         private String userEm;

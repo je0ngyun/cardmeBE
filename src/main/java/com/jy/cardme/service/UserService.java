@@ -7,6 +7,7 @@ public interface UserService {
     /* 공통 서비스
      * 회원 가입
      * 로그인
+     * 회원정보 수정
      * 회원정보 조회
      * 회원 탈퇴
      * 아이디 찾기
@@ -22,4 +23,6 @@ public interface UserService {
     UserEntity getUserEntity(String userId);
 
     UserDto.Info withdrawal(UserDto.WithdrawalReq userWithdrawalReq);
+
+    UserDto.Info updateUser(UserDto.UpdateReq userUpdateReq);
 }

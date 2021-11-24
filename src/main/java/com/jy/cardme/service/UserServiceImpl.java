@@ -84,4 +84,15 @@ public class UserServiceImpl implements UserService {
         }
         return userInfo;
     }
+
+    @Override
+    public UserDto.Info updateUser(UserDto.UpdateReq userUpdateReq) {
+        final Optional<UserEntity> optional = userRepository.findByUserId(userUpdateReq.getUserId());
+        UserEntity user = optional.get();
+        user.setUserEm(userUpdateReq.getUserEm());
+        user.setUserNm(userUpdateReq.getUserNm());
+        final UserEntity repoRet = userRepository.saveAndFlush(user);
+        final UserDto.Info userInfo = UserDto.Info.createFromEntity(repoRet);
+        return userInfo;
+    }
 }

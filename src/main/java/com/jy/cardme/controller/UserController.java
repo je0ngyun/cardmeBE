@@ -45,4 +45,15 @@ public class UserController {
                 .data(data).build();
         return new ResponseEntity(res,HttpStatus.OK);
     }
+
+    @PutMapping("")
+    public ResponseEntity updateUser(@RequestBody @Valid final UserDto.UpdateReq userUpdateReq){
+        final UserDto.Info data = userService.updateUser(userUpdateReq);
+        final DefaultRes res = DefaultRes.builder()
+                .message(ResponseMessage.UPDATE_USER)
+                .httpStatus(StatusCode.OK)
+                .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
+                .data(data).build();
+        return new ResponseEntity(res,HttpStatus.OK);
+    }
 }
