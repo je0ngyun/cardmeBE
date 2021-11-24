@@ -56,4 +56,15 @@ public class UserController {
                 .data(data).build();
         return new ResponseEntity(res,HttpStatus.OK);
     }
+
+    @PutMapping("pw")
+    public ResponseEntity changePw(@RequestBody @Valid final UserDto.ChangePwReq userChangePwReq){
+        final UserDto.Info data = userService.changePw(userChangePwReq);
+        final DefaultRes res = DefaultRes.builder()
+                .message(ResponseMessage.UPDATE_USER)
+                .httpStatus(StatusCode.OK)
+                .timestamp(ZonedDateTime.now(ZoneId.of("Z")))
+                .data(data).build();
+        return new ResponseEntity(res,HttpStatus.OK);
+    }
 }

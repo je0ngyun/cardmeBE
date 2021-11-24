@@ -13,5 +13,5 @@ public interface AuthService {
 
     String issuingToken(UserDto.SignInReq userSignInReq, UserEntity user);
 
-    boolean issuingToken(UserDto.WithdrawalReq userWithdrawalReq, UserEntity user);
+    boolean checkingPw(String pw, UserEntity user);
 }

@@ -36,8 +36,8 @@ public class AuthServiceImpl implements AuthService {
     }
 
     @Override
-    public boolean issuingToken(UserDto.WithdrawalReq userWithdrawalReq, UserEntity user) {
-        if (!passwordEncoder.matches(userWithdrawalReq.getUserPw(), user.getUserPw())) {
+    public boolean checkingPw(String pw, UserEntity user) {
+        if (!passwordEncoder.matches(pw, user.getUserPw())) {
             throw new Common400Exception(ResponseMessage.WRONG_PASSWORD);
         }
         return true;

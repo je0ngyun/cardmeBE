@@ -25,4 +25,6 @@ public interface UserService {
     UserDto.Info withdrawal(UserDto.WithdrawalReq userWithdrawalReq);
 
     UserDto.Info updateUser(UserDto.UpdateReq userUpdateReq);
+
+    UserDto.Info changePw(UserDto.ChangePwReq userChangePwReq);
 }

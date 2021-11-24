@@ -68,6 +68,17 @@ public class UserDto {
     }
 
     @Data
+    @AllArgsConstructor
+    public static class ChangePwReq{
+        @NotBlank
+        private String userId;
+        @NotBlank
+        private String userPw;
+        @NotBlank
+        private String userNewPw;
+    }
+
+    @Data
     @AllArgsConstructor(access = AccessLevel.PRIVATE)
     @Builder
     public static class Info {

@@ -79,7 +79,7 @@ public class UserServiceImpl implements UserService {
         }
         final UserEntity user = optional.get();
         final UserDto.Info userInfo = UserDto.Info.createFromEntity(user);
-        if (authService.issuingToken(userWithdrawalReq, user)) {
+        if (authService.checkingPw(userWithdrawalReq.getUserPw(), user)) {
             userRepository.delete(user);
         }
         return userInfo;
@@ -93,6 +93,22 @@ public class UserServiceImpl implements UserService {
         user.setUserNm(userUpdateReq.getUserNm());
         final UserEntity repoRet = userRepository.saveAndFlush(user);
         final UserDto.Info userInfo = UserDto.Info.createFromEntity(repoRet);
+        return userInfo;
+    }
+
+    @Override
+    public UserDto.Info changePw(UserDto.ChangePwReq userChangePwReq) {
+        final Optional<UserEntity> optional = userRepository.findByUserId(userChangePwReq.getUserId());
+        if (!optional.isPresent()) {
+            throw new Common404Exception(ResponseMessage.NOT_FOUND_USER);
+        }
+        UserEntity user = optional.get();
+        if (authService.checkingPw(userChangePwReq.getUserPw(), user)) {
+            user.setUserPw(userChangePwReq.getUserNewPw());
+            authService.encryptingPw(user);
+            userRepository.saveAndFlush(user);
+        }
+        final UserDto.Info userInfo = UserDto.Info.createFromEntity(user);
         return userInfo;
     }
 }
