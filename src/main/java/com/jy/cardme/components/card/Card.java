@@ -83,7 +83,8 @@ public abstract class Card {
         float skillStartXPos = 0;
         float yPosIncrease = getYPosIncrease();
 
-        for (int i = 0; i < maximumSkillsLines; i++) {
+        for (int i = 0; i < lineOfSkills.size(); i++) {
+            if (i > maximumSkillsLines) break;
             for (String skillName : lineOfSkills.get(i)) {
                 skillFragment.attr("transform", String.format("translate(%s,%s)", skillStartXPos, skillStartYPos));
                 skillFragment.getElementById("skill-rect").attr("width", String.format("%s", getSkillRectWidth(skillName)));
