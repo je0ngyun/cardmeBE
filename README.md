@@ -107,7 +107,7 @@ ControllerAdvice로 처리할 수 없는 SpringSecurity 의 JWT 에러처리는 
 ### 5. CI/CD
 
 프로젝트를 진행하면서 배포까지의 단계를 자동화 하였습니다.  
-[젠킨스와 도커기반으로 진행](https://je0ngyun.github.io/devops/spring-boot-jenkins-ci-cd)하였으며 [Github branch별 WebHook](https://je0ngyun.github.io/devops/jenkins-branch-webhook)을 통하여 정해진 branch에 push시에만 배포가 되도록 하였습니다.  
+[젠킨스와 도커기반으로 진행](https://je0ngyun.netlify.app/develop/devops/spring-boot-jenkins-ci-cd/)하였으며 [Github branch별 WebHook](https://je0ngyun.netlify.app/develop/devops/jenkins-branch-webhook/)을 통하여 정해진 branch에 push시에만 배포가 되도록 하였습니다.  
 젠킨스 플러그인중 하나인 Generic Webhook Trigger 를 사용하였습니다
 
 ### 6. SSL
