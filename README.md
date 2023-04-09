@@ -20,18 +20,14 @@
 
 Jenkins를 통하여 Docker Image 기반으로 CI/CD 파이프라인을 구축해놓았습니다.
 테스트 서버로의 API요청 주소는 다음과 같습니다.  
-[**https://www.je0ngyun.kro.kr/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1**](https://www.je0ngyun.kro.kr/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1)
+[**http://www.je0ngyun.kro.kr:8080/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1**](http://www.je0ngyun.kro.kr:8080/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1)
 
 ```html
 //e.g
 <img
-  src="https://www.je0ngyun.kro.kr/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1"
+  src="http://www.je0ngyun.kro.kr:8080/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1"
 />
 ```
-
-### 결과
-
-<img src="https://www.je0ngyun.kro.kr/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1"/><br/>
 
 ## 기능구현
 
@@ -113,4 +109,4 @@ ControllerAdvice로 처리할 수 없는 SpringSecurity 의 JWT 에러처리는 
 ### 6. SSL
 
 HTTPS를 통해 제공되는 페이지에 안전하지 않은 HTTP 리소스를 로드하지 않기때문에 API에 HTTPS를 적용하였습니다.  
-무료 인증서인 Let's Encrypt를 사용하였습니다.
+무료 인증서인 Let's Encrypt를 사용하였습니다. (현재는 SSL 적용 해제 상태)
