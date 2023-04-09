@@ -22,6 +22,9 @@ Jenkins를 통하여 Docker Image 기반으로 CI/CD 파이프라인을 구축�
 테스트 서버로의 API요청 주소는 다음과 같습니다.  
 [**http://www.je0ngyun.kro.kr:8080/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1**](http://www.je0ngyun.kro.kr:8080/cardme/api/v1/card?userId=je0ngyun&cardName=mycard1)
 
+현재 SSL사용을 중단시켜놓았습니다.
+위 링크로 들어가셔서 안전하지 않은 페이지로 이동을 눌러주시면 결과물을 보실 수 있습니다.
+
 ```html
 //e.g
 <img
